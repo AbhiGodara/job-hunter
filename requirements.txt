@@ -1,0 +1,14 @@
+crewai>=0.152.0
+crewai[tools]>=0.152.0
+crewai[google-genai]
+pydantic>=2.0
+litellm
+ddgs
+trafilatura
+flask
+PyPDF2
+python-docx
+python-dotenv
+pyyaml
+langchain-groq
+streamlit

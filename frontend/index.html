@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Hunter Agent — AI-Powered Job Search & Interview Prep</title>
+    <meta name="description" content="Autonomous AI agent that scrapes real job listings, ranks them against your resume, and generates tailored prep guides.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">🎯</span>
+            <span class="nav-title">Job Hunter <span class="accent">Agent</span></span>
+        </div>
+        <div class="nav-links">
+            <button class="nav-btn" id="btn-history" title="Search History">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                History
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN LAYOUT ===== -->
+    <main class="main-layout">
+
+        <!-- LEFT PANEL: Search Config -->
+        <aside class="panel panel-left" id="search-panel">
+            <div class="panel-header">
+                <h2>Search Configuration</h2>
+            </div>
+
+            <!-- Job Parameters -->
+            <div class="form-section">
+                <h3>Job Parameters</h3>
+                <div class="form-group">
+                    <label for="inp-position">Position / Role</label>
+                    <input type="text" id="inp-position" placeholder="e.g. ML Engineer" value="ML Engineer">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inp-level">Level</label>
+                        <input type="text" id="inp-level" placeholder="e.g. Junior" value="Junior">
+                    </div>
+                    <div class="form-group">
+                        <label for="inp-location">Location</label>
+                        <input type="text" id="inp-location" placeholder="e.g. India" value="India">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="sel-date">Posted Within</label>
+                    <select id="sel-date">
+                        <option value="1_week">Last Week</option>
+                        <option value="2_weeks">Last 2 Weeks</option>
+                        <option value="1_month" selected>Last Month</option>
+                        <option value="3_months">Last 3 Months</option>
+                        <option value="all">Any Time</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Portal Selection -->
+            <div class="form-section">
+                <h3>Job Portals</h3>
+                <div class="portal-grid" id="portal-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Resume Upload -->
+            <div class="form-section">
+                <h3>Your Resume</h3>
+                <div class="upload-zone" id="upload-zone">
+                    <div class="upload-icon">📄</div>
+                    <p class="upload-text">Drag & drop your resume here</p>
+                    <p class="upload-hint">PDF, DOCX, or TXT (max 10MB)</p>
+                    <input type="file" id="file-input" accept=".pdf,.docx,.doc,.txt" hidden>
+                    <button class="btn btn-outline btn-sm" id="btn-browse">Browse Files</button>
+                </div>
+                <div class="upload-success hidden" id="upload-success">
+                    <span class="upload-check">✅</span>
+                    <span id="upload-filename">resume.pdf</span>
+                    <button class="btn-icon" id="btn-remove-file" title="Remove">✕</button>
+                </div>
+                <div class="divider-or"><span>or paste text</span></div>
+                <textarea id="inp-resume" placeholder="Paste your resume text here..." rows="6"></textarea>
+            </div>
+
+            <!-- Search Button -->
+            <button class="btn btn-primary btn-lg" id="btn-search">
+                <span class="btn-icon-left">🚀</span>
+                Search Jobs
+            </button>
+        </aside>
+
+        <!-- RIGHT PANEL: Results -->
+        <section class="panel panel-right" id="results-panel">
+
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state">
+                <div class="empty-icon">🔍</div>
+                <h2>Ready to Hunt</h2>
+                <p>Configure your search on the left and click "Search Jobs" to find real opportunities matched to your skills.</p>
+                <div class="feature-pills">
+                    <span class="pill">Multi-Portal Search</span>
+                    <span class="pill">AI-Powered Matching</span>
+                    <span class="pill">Interview Prep</span>
+                </div>
+            </div>
+
+            <!-- Progress State -->
+            <div class="progress-state hidden" id="progress-state">
+                <div class="progress-card">
+                    <div class="progress-header">
+                        <div class="spinner"></div>
+                        <h2 id="progress-title">Searching...</h2>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <p class="progress-message" id="progress-message">Initializing search...</p>
+                    <div class="progress-log" id="progress-log"></div>
+                </div>
+            </div>
+
+            <!-- Results State -->
+            <div class="results-state hidden" id="results-state">
+                <div class="results-header">
+                    <h2>Ranked Opportunities</h2>
+                    <span class="badge" id="results-count">0 jobs</span>
+                </div>
+                <div class="results-list" id="results-list">
+                    <!-- Job cards populated by JS -->
+                </div>
+            </div>
+
+            <!-- Prep Guide Modal -->
+            <div class="modal-overlay hidden" id="prep-modal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h2 id="prep-modal-title">Interview Prep Guide</h2>
+                        <button class="btn-icon" id="btn-close-modal">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Prep Loading -->
+                        <div class="prep-loading" id="prep-loading">
+                            <div class="spinner"></div>
+                            <p id="prep-loading-msg">Generating your personalized prep guide...</p>
+                        </div>
+                        <!-- Prep Content -->
+                        <div class="prep-content hidden" id="prep-content">
+                            <div class="prep-tabs">
+                                <button class="prep-tab active" data-tab="resume">📄 Tailored Resume</button>
+                                <button class="prep-tab" data-tab="research">🏢 Company Research</button>
+                                <button class="prep-tab" data-tab="interview">🎤 Interview Prep</button>
+                            </div>
+                            <div class="prep-tab-content" id="prep-tab-resume"></div>
+                            <div class="prep-tab-content hidden" id="prep-tab-research"></div>
+                            <div class="prep-tab-content hidden" id="prep-tab-interview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Modal -->
+            <div class="modal-overlay hidden" id="history-modal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h2>Search History</h2>
+                        <button class="btn-icon" id="btn-close-history">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="history-list" id="history-list"></div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
