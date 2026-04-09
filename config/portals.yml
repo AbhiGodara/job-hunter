@@ -1,0 +1,23 @@
+# Multi-Portal Job Scraping Configuration
+
+portals:
+  - name: "LinkedIn"
+    url: "https://www.linkedin.com/jobs/"
+    job_selector: ".job-card"
+    title_selector: ".job-card__title"
+    company_selector: ".job-card__company"
+    location_selector: ".job-card__location"
+
+  - name: "Indeed"
+    url: "https://www.indeed.com/jobs"
+    job_selector: ".job_seen_beacon"
+    title_selector: ".jobTitle"
+    company_selector: ".companyName"
+    location_selector: ".companyLocation"
+
+  - name: "Glassdoor"
+    url: "https://www.glassdoor.com/Job/index.htm"
+    job_selector: ".jobListing"
+    title_selector: ".jobTitle"
+    company_selector: ".company"
+    location_selector: ".location"
