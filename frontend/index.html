@@ -3,186 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Hunter Agent — AI-Powered Job Search & Interview Prep</title>
-    <meta name="description" content="Autonomous AI agent that scrapes real job listings, ranks them against your resume, and generates tailored prep guides.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Job Hunter Agent</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Marked.js for Markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-
-    <!-- ===== NAVBAR ===== -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-brand">
-            <span class="nav-icon">🎯</span>
-            <span class="nav-title">Job Hunter <span class="accent">Agent</span></span>
+    <div class="container">
+        <div class="header">
+            <h1>Job Hunter Agent</h1>
+            <p>AI-powered job search, matching & interview prep</p>
         </div>
-        <div class="nav-links">
-            <button class="nav-btn" id="btn-history" title="Search History">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                History
-            </button>
+
+        <!-- View 1: Search Form -->
+        <div id="view-form" class="view active glass-card">
+            <form id="search-form">
+                <div class="upload-area" id="upload-box">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p id="file-label">Drag & drop your resume (PDF/DOCX) or click to browse</p>
+                    <input type="file" id="resume-upload" accept=".pdf,.docx,.txt" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Job Role</label>
+                    <input type="text" id="role" class="form-control" placeholder="e.g. ML Engineer Intern, Data Scientist" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" class="form-control" placeholder="e.g. India, Remote, Bangalore" value="India">
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; margin-bottom: 1rem;">Search Jobs</button>
+                <div style="text-align: center;">
+                    <a href="#" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">View Search History</a>
+                </div>
+            </form>
         </div>
-    </nav>
 
-    <!-- ===== MAIN LAYOUT ===== -->
-    <main class="main-layout">
-
-        <!-- LEFT PANEL: Search Config -->
-        <aside class="panel panel-left" id="search-panel">
-            <div class="panel-header">
-                <h2>Search Configuration</h2>
+        <!-- View 2: Progress -->
+        <div id="view-progress" class="view glass-card">
+            <div class="progress-container">
+                <h2 id="progress-text" style="margin-bottom: 1rem; color: var(--accent);">Initializing...</h2>
+                <div class="progress-bar-bg">
+                    <div id="progress-bar" class="progress-bar-fill"></div>
+                </div>
+                <p id="progress-percent" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem;">0%</p>
+                <button id="cancel-btn" class="btn btn-outline">Cancel</button>
             </div>
+        </div>
 
-            <!-- Job Parameters -->
-            <div class="form-section">
-                <h3>Job Parameters</h3>
-                <div class="form-group">
-                    <label for="inp-position">Position / Role</label>
-                    <input type="text" id="inp-position" placeholder="e.g. ML Engineer" value="ML Engineer">
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="inp-level">Level</label>
-                        <input type="text" id="inp-level" placeholder="e.g. Junior" value="Junior">
-                    </div>
-                    <div class="form-group">
-                        <label for="inp-location">Location</label>
-                        <input type="text" id="inp-location" placeholder="e.g. India" value="India">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="sel-date">Posted Within</label>
-                    <select id="sel-date">
-                        <option value="1_week">Last Week</option>
-                        <option value="2_weeks">Last 2 Weeks</option>
-                        <option value="1_month" selected>Last Month</option>
-                        <option value="3_months">Last 3 Months</option>
-                        <option value="all">Any Time</option>
-                    </select>
+        <!-- View 3: Results -->
+        <div id="view-results" class="view">
+            <div class="results-header glass-card" style="padding: 1.5rem;">
+                <h2 id="summary-text" style="font-size: 1.25rem;">Found 0 jobs — Average match score: 0.0/5</h2>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button id="export-btn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Export to CSV</button>
+                    <button id="new-search-btn" class="btn" style="padding: 0.5rem 1rem;">New Search</button>
                 </div>
             </div>
 
-            <!-- Portal Selection -->
-            <div class="form-section">
-                <h3>Job Portals</h3>
-                <div class="portal-grid" id="portal-grid">
-                    <!-- Populated by JS -->
+            <div id="jobs-grid" class="jobs-grid">
+                <!-- Job cards injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Prep Modal -->
+    <div id="prep-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Interview Prep Guide ✨</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs">
+                    <div class="tab active" data-target="tab-resume">Tailored Resume</div>
+                    <div class="tab" data-target="tab-research">Company Research</div>
+                    <div class="tab" data-target="tab-interview">Interview Prep</div>
+                </div>
+                
+                <div id="tab-resume" class="tab-content active">
+                    <button id="download-resume" class="btn btn-small" style="margin-bottom: 1rem; float: right;">Download .md</button>
+                    <div id="content-resume" class="markdown-body"></div>
+                </div>
+                <div id="tab-research" class="tab-content">
+                    <button id="download-research" class="btn btn-small" style="margin-bottom: 1rem; float: right;">Download .md</button>
+                    <div id="content-research" class="markdown-body"></div>
+                </div>
+                <div id="tab-interview" class="tab-content">
+                    <button id="download-interview" class="btn btn-small" style="margin-bottom: 1rem; float: right;">Download .md</button>
+                    <div id="content-interview" class="markdown-body"></div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Resume Upload -->
-            <div class="form-section">
-                <h3>Your Resume</h3>
-                <div class="upload-zone" id="upload-zone">
-                    <div class="upload-icon">📄</div>
-                    <p class="upload-text">Drag & drop your resume here</p>
-                    <p class="upload-hint">PDF, DOCX, or TXT (max 10MB)</p>
-                    <input type="file" id="file-input" accept=".pdf,.docx,.doc,.txt" hidden>
-                    <button class="btn btn-outline btn-sm" id="btn-browse">Browse Files</button>
-                </div>
-                <div class="upload-success hidden" id="upload-success">
-                    <span class="upload-check">✅</span>
-                    <span id="upload-filename">resume.pdf</span>
-                    <button class="btn-icon" id="btn-remove-file" title="Remove">✕</button>
-                </div>
-                <div class="divider-or"><span>or paste text</span></div>
-                <textarea id="inp-resume" placeholder="Paste your resume text here..." rows="6"></textarea>
-            </div>
-
-            <!-- Search Button -->
-            <button class="btn btn-primary btn-lg" id="btn-search">
-                <span class="btn-icon-left">🚀</span>
-                Search Jobs
-            </button>
-        </aside>
-
-        <!-- RIGHT PANEL: Results -->
-        <section class="panel panel-right" id="results-panel">
-
-            <!-- Empty State -->
-            <div class="empty-state" id="empty-state">
-                <div class="empty-icon">🔍</div>
-                <h2>Ready to Hunt</h2>
-                <p>Configure your search on the left and click "Search Jobs" to find real opportunities matched to your skills.</p>
-                <div class="feature-pills">
-                    <span class="pill">Multi-Portal Search</span>
-                    <span class="pill">AI-Powered Matching</span>
-                    <span class="pill">Interview Prep</span>
-                </div>
-            </div>
-
-            <!-- Progress State -->
-            <div class="progress-state hidden" id="progress-state">
-                <div class="progress-card">
-                    <div class="progress-header">
-                        <div class="spinner"></div>
-                        <h2 id="progress-title">Searching...</h2>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" id="progress-bar"></div>
-                    </div>
-                    <p class="progress-message" id="progress-message">Initializing search...</p>
-                    <div class="progress-log" id="progress-log"></div>
-                </div>
-            </div>
-
-            <!-- Results State -->
-            <div class="results-state hidden" id="results-state">
-                <div class="results-header">
-                    <h2>Ranked Opportunities</h2>
-                    <span class="badge" id="results-count">0 jobs</span>
-                </div>
-                <div class="results-list" id="results-list">
-                    <!-- Job cards populated by JS -->
-                </div>
-            </div>
-
-            <!-- Prep Guide Modal -->
-            <div class="modal-overlay hidden" id="prep-modal">
-                <div class="modal">
-                    <div class="modal-header">
-                        <h2 id="prep-modal-title">Interview Prep Guide</h2>
-                        <button class="btn-icon" id="btn-close-modal">✕</button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Prep Loading -->
-                        <div class="prep-loading" id="prep-loading">
-                            <div class="spinner"></div>
-                            <p id="prep-loading-msg">Generating your personalized prep guide...</p>
-                        </div>
-                        <!-- Prep Content -->
-                        <div class="prep-content hidden" id="prep-content">
-                            <div class="prep-tabs">
-                                <button class="prep-tab active" data-tab="resume">📄 Tailored Resume</button>
-                                <button class="prep-tab" data-tab="research">🏢 Company Research</button>
-                                <button class="prep-tab" data-tab="interview">🎤 Interview Prep</button>
-                            </div>
-                            <div class="prep-tab-content" id="prep-tab-resume"></div>
-                            <div class="prep-tab-content hidden" id="prep-tab-research"></div>
-                            <div class="prep-tab-content hidden" id="prep-tab-interview"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- History Modal -->
-            <div class="modal-overlay hidden" id="history-modal">
-                <div class="modal">
-                    <div class="modal-header">
-                        <h2>Search History</h2>
-                        <button class="btn-icon" id="btn-close-history">✕</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="history-list" id="history-list"></div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-    </main>
-
-    <script src="/js/app.js"></script>
+    <!-- Scripts -->
+    <script src="js/upload.js"></script>
+    <script src="js/poller.js"></script>
+    <script src="js/results.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
