@@ -1,21 +1,23 @@
-crewai>=0.152.0
-crewai[tools]>=0.152.0
-crewai[google-genai]
-pydantic>=2.0
-litellm
+# Core
+flask>=3.0.0
+flask-cors>=4.0.0
+python-dotenv>=1.0.0
+
+# Resume parsing
+pdfplumber>=0.10.0
+python-docx>=1.1.0
+
+# Scraping & Search
+requests>=2.31.0
+pyyaml>=6.0.0
+duckduckgo-search>=7.0.0
 ddgs
-PyPDF2
-python-docx
-pyyaml
-streamlit
-flask
-flask-cors
-python-dotenv
-duckduckgo-search
-trafilatura
-playwright
-pdfplumber
-python-docx
-crewai
-langchain-groq
-requests
+
+# Browser automation (for PDF generation)
+playwright>=1.44.0
+
+# LLM (used only for prep phase)
+groq>=0.5.0
+
+# Markdown → HTML (for PDF generation)
+markdown>=3.5.0

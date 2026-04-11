@@ -1,5 +1,4 @@
 let currentJobs = [];
-let resumeTextBackup = "";
 let activePoller = null;
 
 document.getElementById('search-form').addEventListener('submit', async (e) => {
@@ -7,6 +6,7 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     
     const role = document.getElementById('role').value;
     const location = document.getElementById('location').value || 'India';
+    const experience = document.getElementById('experience').value || '';
     const resumeFile = document.getElementById('resume-upload').files[0];
     
     if (!role || !resumeFile) {
@@ -20,6 +20,7 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     const formData = new FormData();
     formData.append('role', role);
     formData.append('location', location);
+    formData.append('experience', experience);
     formData.append('resume', resumeFile);
     
     try {
@@ -44,10 +45,6 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
                 document.getElementById('view-progress').classList.remove('active');
                 document.getElementById('view-results').classList.add('active');
                 renderJobs(jobs);
-                
-                const reader = new FileReader();
-                reader.onload = (e) => resumeTextBackup = e.target.result;
-                reader.readAsText(resumeFile);
             },
             onError: (err) => {
                 alert(`Error: ${err}`);
@@ -104,15 +101,22 @@ document.querySelectorAll('.tab').forEach(tab => {
 async function showPrepModal(jobId) {
     modal.classList.add('active');
     
-    document.getElementById('content-resume').innerHTML = '<p>Generating tailored resume...</p>';
-    document.getElementById('content-research').innerHTML = '<p>Generating company research...</p>';
-    document.getElementById('content-interview').innerHTML = '<p>Generating interview prep...</p>';
+    // Show loading state
+    document.getElementById('content-resume').innerHTML = '<div class="loading-spinner"></div><p>Generating tailored resume...</p>';
+    document.getElementById('content-research').innerHTML = '<div class="loading-spinner"></div><p>Researching company...</p>';
+    document.getElementById('content-interview').innerHTML = '<div class="loading-spinner"></div><p>Preparing interview guide...</p>';
+    
+    // Hide PDF buttons until ready
+    document.getElementById('download-resume-pdf').style.display = 'none';
+    document.getElementById('download-interview-pdf').style.display = 'none';
     
     try {
+        // We do NOT send resume_text from the frontend anymore.
+        // The server uses the properly parsed text stored in DB from parse_resume().
         const resp = await fetch(`/api/prep/${jobId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ resume_text: resumeTextBackup })
+            body: JSON.stringify({})
         });
         const data = await resp.json();
         
@@ -126,9 +130,22 @@ async function showPrepModal(jobId) {
         document.getElementById('content-research').innerHTML = marked.parse(data.research || "");
         document.getElementById('content-interview').innerHTML = marked.parse(data.interview || "");
         
+        // Markdown downloads
         setupDownloadBtn('download-resume', data.resume, 'tailored_resume.md');
         setupDownloadBtn('download-research', data.research, 'company_research.md');
         setupDownloadBtn('download-interview', data.interview, 'interview_prep.md');
+        
+        // PDF downloads
+        if (data.resume_pdf) {
+            const pdfBtn = document.getElementById('download-resume-pdf');
+            pdfBtn.style.display = 'inline-block';
+            pdfBtn.onclick = () => window.open(data.resume_pdf, '_blank');
+        }
+        if (data.interview_pdf) {
+            const pdfBtn = document.getElementById('download-interview-pdf');
+            pdfBtn.style.display = 'inline-block';
+            pdfBtn.onclick = () => window.open(data.interview_pdf, '_blank');
+        }
         
     } catch (err) {
         alert("Failed to generate prep materials: " + err.message);

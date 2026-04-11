@@ -12,22 +12,34 @@ def write_resume(job: dict, resume_text: str) -> str:
     if not job or not resume_text:
         return "Could not generate resume: Missing data."
 
+    # Validate that resume_text is actually readable text (not binary garbage)
+    printable_ratio = sum(1 for c in resume_text[:500] if c.isprintable() or c in '\n\r\t') / max(len(resume_text[:500]), 1)
+    if printable_ratio < 0.7:
+        return ("**Error:** The uploaded resume appears to be corrupted or not a text-based document.\n\n"
+                "Please upload a text-based PDF, DOCX, or plain text file.")
+
     system_prompt = (
         "You are an expert resume writer. Rewrite the provided resume to be perfectly "
-        "tailored for the job description below. Keep all facts accurate — do not invent "
-        "experience. Reorder and emphasize sections that match the job requirements. "
-        "Add relevant keywords from the job description naturally. "
-        "Output clean Markdown formatted as a professional resume."
+        "tailored for the job description below. Follow these strict rules:\n"
+        "1. Keep all facts accurate — do NOT invent or fabricate any experience, skills, or qualifications.\n"
+        "2. Reorder and emphasize sections that match the job requirements.\n"
+        "3. Add relevant keywords from the job description naturally.\n"
+        "4. Use clean Markdown formatting with clear section headers (## format).\n"
+        "5. Include these sections: Contact Info, Professional Summary, Technical Skills, "
+        "Experience, Education, Projects (if relevant).\n"
+        "6. Use bullet points with action verbs for experience items.\n"
+        "7. Output ONLY the resume content in Markdown — no commentary or explanations."
     )
     
     job_desc = (
-        f"Job Title: {job.get('title')}\n"
-        f"Company: {job.get('company')}\n"
-        f"Requirements: {job.get('description')}\n"
-        f"Required Skills: {job.get('skills')}"
+        f"Job Title: {job.get('title', 'N/A')}\n"
+        f"Company: {job.get('company', 'N/A')}\n"
+        f"Location: {job.get('location', 'N/A')}\n"
+        f"Requirements: {job.get('description', 'Not provided')}\n"
+        f"Required Skills: {job.get('skills', 'Not specified')}"
     )
     
-    user_prompt = f"--- Target Job ---\n{job_desc}\n\n--- Original Resume ---\n{resume_text[:10000]}"
+    user_prompt = f"--- Target Job ---\n{job_desc}\n\n--- Original Resume ---\n{resume_text[:8000]}"
     
     messages = [
         {"role": "system", "content": system_prompt},

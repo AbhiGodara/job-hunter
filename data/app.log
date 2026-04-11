@@ -1,370 +1,145 @@
-[2026-03-31 17:50:11,507] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:50:11,512] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:50:37,162] [INFO] [werkzeug]  * Detected change in 'D:\\ml_udemy\\00 ML CODE\\Projects\\job-hunter-agent\\backend\\scraper\\search_engine.py', reloading
-[2026-03-31 17:50:39,095] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:50:39,102] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:51:53,714] [INFO] [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+[2026-04-11 04:20:25,685] [INFO] [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
-[2026-03-31 17:51:53,715] [INFO] [werkzeug] [33mPress CTRL+C to quit[0m
-[2026-03-31 17:51:53,735] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 17:51:55,656] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:51:55,661] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:51:59,836] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:51:59] "[36mGET / HTTP/1.1[0m" 304 -
-[2026-03-31 17:51:59,874] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:51:59] "[36mGET /css/style.css HTTP/1.1[0m" 304 -
-[2026-03-31 17:51:59,880] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:51:59] "[36mGET /js/upload.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:51:59,882] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:51:59] "[36mGET /js/poller.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:51:59,884] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:51:59] "[36mGET /js/results.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:51:59,886] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:51:59] "[36mGET /js/app.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:52:13,975] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:13] "POST /api/search HTTP/1.1" 200 -
-[2026-03-31 17:52:13,991] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:13] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:14,331] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Alinkedin.com%2Fjobs+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:15,640] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Alinkedin.com%2Fjobs+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:16,009] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:16] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:16,706] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Alinkedin.com%2Fjobs+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:17,663] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Alinkedin.com%2Fjobs+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:18,026] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:18] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:18,612] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Alinkedin.com%2Fjobs+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:18,731] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:linkedin.com/jobs -"login" -"sign up"
-[2026-03-31 17:52:18,732] [INFO] [backend.scraper.search_engine] DDG returned 0 for linkedin, trying Bing fallback
-[2026-03-31 17:52:20,046] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:20] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:20,588] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aindeed.com+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:21,548] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aindeed.com+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:22,059] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:22] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:22,518] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aindeed.com+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:23,511] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aindeed.com+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:24,074] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:24] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:24,479] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aindeed.com+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:24,507] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:indeed.com -"login" -"sign up"
-[2026-03-31 17:52:24,508] [INFO] [backend.scraper.search_engine] DDG returned 0 for indeed, trying Bing fallback
-[2026-03-31 17:52:26,085] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:26] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:26,283] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Anaukri.com+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:27,382] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Anaukri.com+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:28,099] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:28] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:28,414] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Anaukri.com+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:29,464] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Anaukri.com+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:30,110] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:30] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:30,510] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Anaukri.com+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:30,551] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:naukri.com -"login" -"sign up"
-[2026-03-31 17:52:30,552] [INFO] [backend.scraper.search_engine] DDG returned 0 for naukri, trying Bing fallback
-[2026-03-31 17:52:32,132] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:32] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:32,355] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aglassdoor.com+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:33,400] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aglassdoor.com+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:34,142] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:34] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:34,394] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aglassdoor.com+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:35,368] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aglassdoor.com+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:36,161] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:36] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:36,378] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Aglassdoor.com+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:36,393] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:glassdoor.com -"login" -"sign up"
-[2026-03-31 17:52:36,393] [INFO] [backend.scraper.search_engine] DDG returned 0 for glassdoor, trying Bing fallback
-[2026-03-31 17:52:38,174] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:38] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:38,178] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Awellfound.com+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:39,200] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Awellfound.com+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:40,188] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:40] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:40,221] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Awellfound.com+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:41,281] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Awellfound.com+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:42,204] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:42] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:42,348] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Awellfound.com+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:42,374] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:wellfound.com -"login" -"sign up"
-[2026-03-31 17:52:42,374] [INFO] [backend.scraper.search_engine] DDG returned 0 for wellfound, trying Bing fallback
-[2026-03-31 17:52:44,125] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Asimplyhired.com+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:44,227] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:44] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:45,085] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Asimplyhired.com+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:46,153] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Asimplyhired.com+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:46,245] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:46] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:47,115] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Asimplyhired.com+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:48,257] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:48] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:48,440] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Asimplyhired.com+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:48,561] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:simplyhired.com -"login" -"sign up"
-[2026-03-31 17:52:48,561] [INFO] [backend.scraper.search_engine] DDG returned 0 for simplyhired, trying Bing fallback
-[2026-03-31 17:52:50,266] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:50] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:50,325] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com+-%22login%22+-%22sign+up%22 200
-[2026-03-31 17:52:51,322] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com+-%22login%22+-%22sign+up%22&first=11&FORM=PERE 200
-[2026-03-31 17:52:52,289] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:52] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:52,295] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com+-%22login%22+-%22sign+up%22&first=21&FORM=PERE1 200
-[2026-03-31 17:52:53,252] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com+-%22login%22+-%22sign+up%22&first=31&FORM=PERE2 200
-[2026-03-31 17:52:54,220] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+%22India%22+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com+-%22login%22+-%22sign+up%22&first=41&FORM=PERE3 200
-[2026-03-31 17:52:54,248] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer "India" site:greenhouse.io OR site:lever.co OR site:jobs.ashbyhq.com -"login" -"sign up"
-[2026-03-31 17:52:54,249] [INFO] [backend.scraper.search_engine] DDG returned 0 for ats, trying Bing fallback
-[2026-03-31 17:52:54,303] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:54] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:52:55,758] [INFO] [backend.scraper.search_engine] Total unique URLs found: 0
-[2026-03-31 17:52:56,326] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:52:56] "GET /api/status/887ef86a HTTP/1.1" 200 -
-[2026-03-31 17:54:19,517] [INFO] [werkzeug]  * Detected change in 'D:\\ml_udemy\\00 ML CODE\\Projects\\job-hunter-agent\\test_search.py', reloading
-[2026-03-31 17:54:19,668] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 17:54:22,562] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:54:22,570] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:54:50,450] [INFO] [werkzeug]  * Detected change in 'D:\\ml_udemy\\00 ML CODE\\Projects\\job-hunter-agent\\backend\\scraper\\search_engine.py', reloading
-[2026-03-31 17:54:50,592] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 17:54:52,478] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:54:52,484] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:55:09,316] [INFO] [werkzeug]  * Detected change in 'D:\\ml_udemy\\00 ML CODE\\Projects\\job-hunter-agent\\backend\\scraper\\search_engine.py', reloading
-[2026-03-31 17:55:09,449] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 17:55:11,202] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:55:11,209] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:56:30,036] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:30] "POST /api/search HTTP/1.1" 200 -
-[2026-03-31 17:56:30,045] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:30] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:30,375] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs 200
-[2026-03-31 17:56:31,416] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=11&FORM=PERE 200
-[2026-03-31 17:56:32,059] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:32] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:32,412] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=21&FORM=PERE1 200
-[2026-03-31 17:56:33,511] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=31&FORM=PERE2 200
-[2026-03-31 17:56:34,075] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:34] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:34,553] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=41&FORM=PERE3 200
-[2026-03-31 17:56:34,587] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:linkedin.com/jobs
-[2026-03-31 17:56:34,588] [INFO] [backend.scraper.search_engine] DDG returned 0 for linkedin, trying Bing fallback
-[2026-03-31 17:56:36,083] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:36] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:36,701] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com 200
-[2026-03-31 17:56:37,806] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=11&FORM=PERE 200
-[2026-03-31 17:56:38,095] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:38] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:38,909] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=21&FORM=PERE1 200
-[2026-03-31 17:56:39,992] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=31&FORM=PERE2 200
-[2026-03-31 17:56:40,104] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:40] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:41,070] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=41&FORM=PERE3 200
-[2026-03-31 17:56:41,127] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:indeed.com
-[2026-03-31 17:56:41,127] [INFO] [backend.scraper.search_engine] DDG returned 0 for indeed, trying Bing fallback
-[2026-03-31 17:56:42,116] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:42] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:43,013] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com 200
-[2026-03-31 17:56:44,125] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:44] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:44,485] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=11&FORM=PERE 200
-[2026-03-31 17:56:45,542] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=21&FORM=PERE1 200
-[2026-03-31 17:56:46,143] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:46] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:46,673] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=31&FORM=PERE2 200
-[2026-03-31 17:56:47,842] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=41&FORM=PERE3 200
-[2026-03-31 17:56:47,913] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:naukri.com
-[2026-03-31 17:56:47,913] [INFO] [backend.scraper.search_engine] DDG returned 0 for naukri, trying Bing fallback
-[2026-03-31 17:56:48,154] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:48] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:49,831] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com 200
-[2026-03-31 17:56:50,168] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:50] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:50,814] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=11&FORM=PERE 200
-[2026-03-31 17:56:51,837] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=21&FORM=PERE1 200
-[2026-03-31 17:56:52,188] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:52] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:52,936] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=31&FORM=PERE2 200
-[2026-03-31 17:56:53,991] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=41&FORM=PERE3 200
-[2026-03-31 17:56:54,038] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:glassdoor.com
-[2026-03-31 17:56:54,038] [INFO] [backend.scraper.search_engine] DDG returned 0 for glassdoor, trying Bing fallback
-[2026-03-31 17:56:54,198] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:54] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:55,889] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com 200
-[2026-03-31 17:56:56,212] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:56] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:56,984] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=11&FORM=PERE 200
-[2026-03-31 17:56:58,008] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=21&FORM=PERE1 200
-[2026-03-31 17:56:58,223] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:56:58] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:56:59,057] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=31&FORM=PERE2 200
-[2026-03-31 17:57:00,099] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=41&FORM=PERE3 200
-[2026-03-31 17:57:00,146] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:wellfound.com
-[2026-03-31 17:57:00,146] [INFO] [backend.scraper.search_engine] DDG returned 0 for wellfound, trying Bing fallback
-[2026-03-31 17:57:00,235] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:00] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:02,083] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com 200
-[2026-03-31 17:57:02,250] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:02] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:03,122] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=11&FORM=PERE 200
-[2026-03-31 17:57:04,202] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=21&FORM=PERE1 200
-[2026-03-31 17:57:04,278] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:04] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:05,243] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=31&FORM=PERE2 200
-[2026-03-31 17:57:06,302] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:06] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:06,341] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=41&FORM=PERE3 200
-[2026-03-31 17:57:06,371] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:simplyhired.com
-[2026-03-31 17:57:06,371] [INFO] [backend.scraper.search_engine] DDG returned 0 for simplyhired, trying Bing fallback
-[2026-03-31 17:57:08,268] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com 200
-[2026-03-31 17:57:08,317] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:08] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:09,301] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=11&FORM=PERE 200
-[2026-03-31 17:57:10,302] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=21&FORM=PERE1 200
-[2026-03-31 17:57:10,324] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:10] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:11,380] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=31&FORM=PERE2 200
-[2026-03-31 17:57:12,336] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:12] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:57:12,472] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=41&FORM=PERE3 200
-[2026-03-31 17:57:12,512] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:greenhouse.io OR site:lever.co OR site:jobs.ashbyhq.com
-[2026-03-31 17:57:12,514] [INFO] [backend.scraper.search_engine] DDG returned 0 for ats, trying Bing fallback
-[2026-03-31 17:57:14,018] [WARNING] [backend.scraper.search_engine] No URLs found across all portals; not caching this empty result.
-[2026-03-31 17:57:14,352] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:57:14] "GET /api/status/f4365e08 HTTP/1.1" 200 -
-[2026-03-31 17:58:40,320] [INFO] [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://192.168.137.168:5000
+[2026-04-11 04:20:25,686] [INFO] [werkzeug] [33mPress CTRL+C to quit[0m
+[2026-04-11 04:20:29,014] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:29] "GET / HTTP/1.1" 200 -
+[2026-04-11 04:20:29,053] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:29] "GET /css/style.css HTTP/1.1" 200 -
+[2026-04-11 04:20:29,056] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:29] "[36mGET /js/upload.js HTTP/1.1[0m" 304 -
+[2026-04-11 04:20:29,061] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:29] "[36mGET /js/poller.js HTTP/1.1[0m" 304 -
+[2026-04-11 04:20:29,063] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:29] "GET /js/results.js HTTP/1.1" 200 -
+[2026-04-11 04:20:29,064] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:29] "GET /js/app.js HTTP/1.1" 200 -
+[2026-04-11 04:20:37,042] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:37] "POST /api/search HTTP/1.1" 200 -
+[2026-04-11 04:20:37,054] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:37] "GET /api/status/24a7b090 HTTP/1.1" 200 -
+[2026-04-11 04:20:37,608] [WARNING] [backend.pipeline.fast_scanner] Greenhouse API failed for Retool: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/retool/jobs
+[2026-04-11 04:20:37,619] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 77 jobs from Vercel
+[2026-04-11 04:20:37,622] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 182 jobs from Glean
+[2026-04-11 04:20:37,720] [INFO] [backend.pipeline.fast_scanner] Ashby API: 58 jobs from Deepgram
+[2026-04-11 04:20:37,848] [INFO] [backend.pipeline.fast_scanner] Ashby API: 27 jobs from Vapi
+[2026-04-11 04:20:37,997] [WARNING] [backend.pipeline.fast_scanner] Ashby API failed for Perplexity: 404 Client Error: Not Found for url: https://api.ashbyhq.com/posting-api/job-board/perplexityai?includeCompensation=true
+[2026-04-11 04:20:38,039] [INFO] [backend.pipeline.fast_scanner] Ashby API: 79 jobs from Cursor
+[2026-04-11 04:20:38,044] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 56 jobs from Airtable
+[2026-04-11 04:20:38,069] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 0 jobs from Temporal
+[2026-04-11 04:20:38,251] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 185 jobs from Intercom
+[2026-04-11 04:20:38,803] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Scale AI: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/scaleai
+[2026-04-11 04:20:38,833] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Hugging Face: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/huggingface
+[2026-04-11 04:20:39,080] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:39] "GET /api/status/24a7b090 HTTP/1.1" 200 -
+[2026-04-11 04:20:39,893] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 429 jobs from Anthropic
+[2026-04-11 04:20:41,097] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:41] "GET /api/status/24a7b090 HTTP/1.1" 200 -
+[2026-04-11 04:20:41,283] [INFO] [backend.pipeline.fast_scanner] Ashby API: 106 jobs from ElevenLabs
+[2026-04-11 04:20:41,289] [INFO] [backend.pipeline.fast_scanner] Total raw jobs fetched: 1199
+[2026-04-11 04:20:41,296] [INFO] [backend.pipeline.fast_scanner] After title filter: 320 jobs
+[2026-04-11 04:20:41,298] [INFO] [backend.pipeline.fast_scanner] After dedup: 320 unique jobs
+[2026-04-11 04:20:41,309] [INFO] [backend.pipeline.fast_scanner] Fast scan complete: returning 40 jobs
+[2026-04-11 04:20:41,336] [INFO] [backend.pipeline.orchestrator] Pipeline complete for run 24a7b090: 40 jobs saved
+[2026-04-11 04:20:43,106] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:20:43] "GET /api/status/24a7b090 HTTP/1.1" 200 -
+[2026-04-11 04:21:45,576] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:21:47,353] [INFO] [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Deepgram%20ML%20Ops%20Infrastructure%20Engineer%20tech%20stack%20culture%20news%20interview%20process 200
+[2026-04-11 04:21:47,786] [INFO] [primp] response: https://grokipedia.com/api/typeahead?query=Deepgram+ML+Ops+Infrastructure+Engineer+tech+stack+culture+news+interview+process&limit=1 200
+[2026-04-11 04:21:48,153] [INFO] [primp] response: https://search.brave.com/search?q=Deepgram+ML+Ops+Infrastructure+Engineer+tech+stack+culture+news+interview+process&source=web 429
+[2026-04-11 04:21:49,281] [INFO] [primp] response: https://yandex.com/search/site/?text=Deepgram+ML+Ops+Infrastructure+Engineer+tech+stack+culture+news+interview+process&web=1&searchid=7170423 200
+[2026-04-11 04:21:51,195] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:21:54,681] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:22:15,192] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\resume_deepgram_1.pdf (21.3 KB)
+[2026-04-11 04:22:17,529] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\interview_deepgram_1.pdf (111.7 KB)
+[2026-04-11 04:22:17,660] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:22:17] "POST /api/prep/1 HTTP/1.1" 200 -
+[2026-04-11 04:22:20,683] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:22:20] "GET /api/pdf/resume_deepgram_1.pdf HTTP/1.1" 200 -
+[2026-04-11 04:23:23,877] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:23:24,394] [INFO] [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Deepgram%20ML%20Ops%20Infrastructure%20Engineer%20tech%20stack%20culture%20news%20interview%20process 200
+[2026-04-11 04:23:24,880] [INFO] [primp] response: https://grokipedia.com/api/typeahead?query=Deepgram+ML+Ops+Infrastructure+Engineer+tech+stack+culture+news+interview+process&limit=1 200
+[2026-04-11 04:23:25,946] [INFO] [primp] response: https://html.duckduckgo.com/html/ 200
+[2026-04-11 04:23:27,907] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:23:32,143] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:23:33,984] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\resume_deepgram_1.pdf (21.3 KB)
+[2026-04-11 04:23:35,739] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\interview_deepgram_1.pdf (16.7 KB)
+[2026-04-11 04:23:35,910] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:23:35] "POST /api/prep/1 HTTP/1.1" 200 -
+[2026-04-11 04:25:34,896] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:25:34] "POST /api/search HTTP/1.1" 200 -
+[2026-04-11 04:25:34,911] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:25:34] "GET /api/status/362022bb HTTP/1.1" 200 -
+[2026-04-11 04:25:35,298] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 0 jobs from Temporal
+[2026-04-11 04:25:35,309] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 56 jobs from Airtable
+[2026-04-11 04:25:35,317] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 185 jobs from Intercom
+[2026-04-11 04:25:35,330] [INFO] [backend.pipeline.fast_scanner] Ashby API: 27 jobs from Vapi
+[2026-04-11 04:25:35,346] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 429 jobs from Anthropic
+[2026-04-11 04:25:35,365] [INFO] [backend.pipeline.fast_scanner] Ashby API: 58 jobs from Deepgram
+[2026-04-11 04:25:35,748] [WARNING] [backend.pipeline.fast_scanner] Greenhouse API failed for Retool: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/retool/jobs
+[2026-04-11 04:25:35,753] [WARNING] [backend.pipeline.fast_scanner] Ashby API failed for Perplexity: 404 Client Error: Not Found for url: https://api.ashbyhq.com/posting-api/job-board/perplexityai?includeCompensation=true
+[2026-04-11 04:25:35,763] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 77 jobs from Vercel
+[2026-04-11 04:25:35,982] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 182 jobs from Glean
+[2026-04-11 04:25:36,443] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Hugging Face: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/huggingface
+[2026-04-11 04:25:36,449] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Scale AI: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/scaleai
+[2026-04-11 04:25:36,740] [INFO] [backend.pipeline.fast_scanner] Ashby API: 106 jobs from ElevenLabs
+[2026-04-11 04:25:36,939] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:25:36] "GET /api/status/362022bb HTTP/1.1" 200 -
+[2026-04-11 04:25:38,952] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:25:38] "GET /api/status/362022bb HTTP/1.1" 200 -
+[2026-04-11 04:25:39,880] [INFO] [backend.pipeline.fast_scanner] Ashby API: 79 jobs from Cursor
+[2026-04-11 04:25:39,885] [INFO] [backend.pipeline.fast_scanner] Total raw jobs fetched: 1199
+[2026-04-11 04:25:39,892] [INFO] [backend.pipeline.fast_scanner] After title filter: 320 jobs
+[2026-04-11 04:25:39,894] [INFO] [backend.pipeline.fast_scanner] After dedup: 320 unique jobs
+[2026-04-11 04:25:39,905] [INFO] [backend.pipeline.fast_scanner] Fast scan complete: returning 40 jobs
+[2026-04-11 04:25:39,932] [INFO] [backend.pipeline.orchestrator] Pipeline complete for run 362022bb: 40 jobs saved
+[2026-04-11 04:25:40,977] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:25:40] "GET /api/status/362022bb HTTP/1.1" 200 -
+[2026-04-11 04:26:07,645] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:26:08,298] [INFO] [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Anthropic%20Applied%20AI%20Engineer%20tech%20stack%20culture%20news%20interview%20process 200
+[2026-04-11 04:26:08,647] [INFO] [primp] response: https://grokipedia.com/api/typeahead?query=Anthropic+Applied+AI+Engineer+tech+stack+culture+news+interview+process&limit=1 200
+[2026-04-11 04:26:09,113] [INFO] [primp] response: https://search.yahoo.com/search;_ylt=17XLvGjvFjowTPVduAlQInj-;_ylu=YBfB7NSOfgg2avKujMTXH536dE3xuYwgAfBwu1awB2D6r_k?p=Anthropic+Applied+AI+Engineer+tech+stack+culture+news+interview+process 200
+[2026-04-11 04:26:10,002] [INFO] [primp] response: https://www.google.com/search?q=Anthropic+Applied+AI+Engineer+tech+stack+culture+news+interview+process&filter=1&start=0&hl=en-US&lr=lang_en&cr=countryUS 200
+[2026-04-11 04:26:11,136] [INFO] [primp] response: https://yandex.com/search/site/?text=Anthropic+Applied+AI+Engineer+tech+stack+culture+news+interview+process&web=1&searchid=3484057 200
+[2026-04-11 04:26:12,995] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:26:17,210] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 04:26:19,172] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\resume_anthropic_50.pdf (21.3 KB)
+[2026-04-11 04:26:20,990] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\interview_anthropic_50.pdf (16.7 KB)
+[2026-04-11 04:26:21,129] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 04:26:21] "POST /api/prep/50 HTTP/1.1" 200 -
+[2026-04-11 06:41:07,605] [INFO] [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:5000
-[2026-03-31 17:58:40,320] [INFO] [werkzeug] [33mPress CTRL+C to quit[0m
-[2026-03-31 17:58:40,333] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 17:58:42,043] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 17:58:42,048] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 17:58:43,487] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:43] "[36mGET / HTTP/1.1[0m" 304 -
-[2026-03-31 17:58:43,515] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:43] "[36mGET /css/style.css HTTP/1.1[0m" 304 -
-[2026-03-31 17:58:43,519] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:43] "[36mGET /js/upload.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:58:43,522] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:43] "[36mGET /js/poller.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:58:43,526] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:43] "[36mGET /js/results.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:58:43,527] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:43] "[36mGET /js/app.js HTTP/1.1[0m" 304 -
-[2026-03-31 17:58:51,539] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:51] "POST /api/search HTTP/1.1" 200 -
-[2026-03-31 17:58:51,551] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:51] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:58:51,929] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs 200
-[2026-03-31 17:58:52,900] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=11&FORM=PERE 200
-[2026-03-31 17:58:53,567] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:53] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:58:53,869] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=21&FORM=PERE1 200
-[2026-03-31 17:58:54,860] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=31&FORM=PERE2 200
-[2026-03-31 17:58:55,583] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:55] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:58:55,919] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Alinkedin.com%2Fjobs&first=41&FORM=PERE3 200
-[2026-03-31 17:58:55,956] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:linkedin.com/jobs
-[2026-03-31 17:58:55,956] [INFO] [backend.scraper.search_engine] DDG returned 0 for linkedin, trying Bing fallback
-[2026-03-31 17:58:57,596] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:57] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:58:57,754] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com 200
-[2026-03-31 17:58:59,087] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=11&FORM=PERE 200
-[2026-03-31 17:58:59,610] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:58:59] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:00,174] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=21&FORM=PERE1 200
-[2026-03-31 17:59:01,148] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=31&FORM=PERE2 200
-[2026-03-31 17:59:01,625] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:01] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:02,111] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aindeed.com&first=41&FORM=PERE3 200
-[2026-03-31 17:59:02,262] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:indeed.com
-[2026-03-31 17:59:02,264] [INFO] [backend.scraper.search_engine] DDG returned 0 for indeed, trying Bing fallback
-[2026-03-31 17:59:03,641] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:03] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:04,025] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com 200
-[2026-03-31 17:59:04,998] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=11&FORM=PERE 200
-[2026-03-31 17:59:05,653] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:05] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:05,965] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=21&FORM=PERE1 200
-[2026-03-31 17:59:07,039] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=31&FORM=PERE2 200
-[2026-03-31 17:59:07,668] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:07] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:08,017] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Anaukri.com&first=41&FORM=PERE3 200
-[2026-03-31 17:59:08,044] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:naukri.com
-[2026-03-31 17:59:08,045] [INFO] [backend.scraper.search_engine] DDG returned 0 for naukri, trying Bing fallback
-[2026-03-31 17:59:09,687] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:09] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:09,849] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com 200
-[2026-03-31 17:59:10,848] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=11&FORM=PERE 200
-[2026-03-31 17:59:11,699] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:11] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:11,898] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=21&FORM=PERE1 200
-[2026-03-31 17:59:12,908] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=31&FORM=PERE2 200
-[2026-03-31 17:59:13,710] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:13] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:13,969] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Aglassdoor.com&first=41&FORM=PERE3 200
-[2026-03-31 17:59:14,101] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:glassdoor.com
-[2026-03-31 17:59:14,102] [INFO] [backend.scraper.search_engine] DDG returned 0 for glassdoor, trying Bing fallback
-[2026-03-31 17:59:15,726] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:15] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:15,859] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com 200
-[2026-03-31 17:59:16,928] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=11&FORM=PERE 200
-[2026-03-31 17:59:17,750] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:17] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:17,888] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=21&FORM=PERE1 200
-[2026-03-31 17:59:18,872] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=31&FORM=PERE2 200
-[2026-03-31 17:59:19,767] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:19] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:19,827] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Awellfound.com&first=41&FORM=PERE3 200
-[2026-03-31 17:59:19,859] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:wellfound.com
-[2026-03-31 17:59:19,859] [INFO] [backend.scraper.search_engine] DDG returned 0 for wellfound, trying Bing fallback
-[2026-03-31 17:59:21,597] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com 200
-[2026-03-31 17:59:21,782] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:21] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:22,598] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=11&FORM=PERE 200
-[2026-03-31 17:59:23,564] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=21&FORM=PERE1 200
-[2026-03-31 17:59:23,799] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:23] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:24,519] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=31&FORM=PERE2 200
-[2026-03-31 17:59:25,822] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:25] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:25,849] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Asimplyhired.com&first=41&FORM=PERE3 200
-[2026-03-31 17:59:25,964] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:simplyhired.com
-[2026-03-31 17:59:25,966] [INFO] [backend.scraper.search_engine] DDG returned 0 for simplyhired, trying Bing fallback
-[2026-03-31 17:59:27,718] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com 200
-[2026-03-31 17:59:27,839] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:27] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:29,069] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=11&FORM=PERE 200
-[2026-03-31 17:59:29,849] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:29] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:30,123] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=21&FORM=PERE1 200
-[2026-03-31 17:59:31,099] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=31&FORM=PERE2 200
-[2026-03-31 17:59:31,874] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:31] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 17:59:32,060] [INFO] [primp] response: https://www.bing.com/search?q=ML+engineer+India+site%3Agreenhouse.io+OR+site%3Alever.co+OR+site%3Ajobs.ashbyhq.com&first=41&FORM=PERE3 200
-[2026-03-31 17:59:32,088] [WARNING] [backend.scraper.search_engine] DDG returned empty for: ML engineer India site:greenhouse.io OR site:lever.co OR site:jobs.ashbyhq.com
-[2026-03-31 17:59:32,089] [INFO] [backend.scraper.search_engine] DDG returned 0 for ats, trying Bing fallback
-[2026-03-31 17:59:33,599] [WARNING] [backend.scraper.search_engine] No URLs found across all portals; not caching this empty result.
-[2026-03-31 17:59:33,888] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 17:59:33] "GET /api/status/c28504b6 HTTP/1.1" 200 -
-[2026-03-31 18:02:44,975] [INFO] [werkzeug]  * Detected change in 'D:\\ml_udemy\\00 ML CODE\\Projects\\job-hunter-agent\\backend\\scraper\\search_engine.py', reloading
-[2026-03-31 18:02:45,164] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 18:02:47,173] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 18:02:47,178] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 18:03:48,757] [INFO] [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-[2026-03-31 18:03:48,757] [INFO] [werkzeug] [33mPress CTRL+C to quit[0m
-[2026-03-31 18:03:48,769] [INFO] [werkzeug]  * Restarting with watchdog (windowsapi)
-[2026-03-31 18:03:50,750] [WARNING] [werkzeug]  * Debugger is active!
-[2026-03-31 18:03:50,756] [INFO] [werkzeug]  * Debugger PIN: 103-726-796
-[2026-03-31 18:03:55,198] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:03:55] "[36mGET / HTTP/1.1[0m" 304 -
-[2026-03-31 18:03:55,224] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:03:55] "[36mGET /css/style.css HTTP/1.1[0m" 304 -
-[2026-03-31 18:03:55,227] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:03:55] "[36mGET /js/upload.js HTTP/1.1[0m" 304 -
-[2026-03-31 18:03:55,233] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:03:55] "[36mGET /js/poller.js HTTP/1.1[0m" 304 -
-[2026-03-31 18:03:55,235] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:03:55] "[36mGET /js/results.js HTTP/1.1[0m" 304 -
-[2026-03-31 18:03:55,237] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:03:55] "[36mGET /js/app.js HTTP/1.1[0m" 304 -
-[2026-03-31 18:04:03,028] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:03] "POST /api/search HTTP/1.1" 200 -
-[2026-03-31 18:04:03,044] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:03] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:05,058] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:05] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:07,073] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:07] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:07,953] [WARNING] [backend.scraper.search_engine] DuckDuckGo Lite returned zero matches for: ML engineer India site:naukri.com
-[2026-03-31 18:04:07,953] [INFO] [backend.scraper.search_engine] DDG returned 0 for naukri, trying Bing fallback
-[2026-03-31 18:04:09,082] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:09] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:09,656] [WARNING] [backend.scraper.search_engine] DuckDuckGo Lite returned zero matches for: ML engineer India site:glassdoor.com
-[2026-03-31 18:04:09,656] [INFO] [backend.scraper.search_engine] DDG returned 0 for glassdoor, trying Bing fallback
-[2026-03-31 18:04:11,092] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:11] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:11,288] [WARNING] [backend.scraper.search_engine] DuckDuckGo Lite returned zero matches for: ML engineer India site:wellfound.com
-[2026-03-31 18:04:11,288] [INFO] [backend.scraper.search_engine] DDG returned 0 for wellfound, trying Bing fallback
-[2026-03-31 18:04:12,918] [WARNING] [backend.scraper.search_engine] DuckDuckGo Lite returned zero matches for: ML engineer India site:simplyhired.com
-[2026-03-31 18:04:12,919] [INFO] [backend.scraper.search_engine] DDG returned 0 for simplyhired, trying Bing fallback
-[2026-03-31 18:04:13,102] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:13] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:14,532] [WARNING] [backend.scraper.search_engine] DuckDuckGo Lite returned zero matches for: ML engineer India site:greenhouse.io OR site:lever.co OR site:jobs.ashbyhq.com
-[2026-03-31 18:04:14,533] [INFO] [backend.scraper.search_engine] DDG returned 0 for ats, trying Bing fallback
-[2026-03-31 18:04:15,118] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:15] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:16,035] [INFO] [backend.scraper.search_engine] Total unique URLs found: 10
-[2026-03-31 18:04:17,130] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:17] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:18,700] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:19,142] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:19] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:20,557] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:21,156] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:21] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:22,439] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:23,177] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:23] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:24,458] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:25,193] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:25] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:26,637] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:27,203] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:27] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:28,791] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:29,229] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:29] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:30,560] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:30,777] [INFO] [urllib3.poolmanager] Redirecting https://in.indeed.com/jobs -> https://in.indeed.com/?from=jobsearch-empty-whatwhere
-[2026-03-31 18:04:31,260] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:31] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:33,277] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:33] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:34,062] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:35,292] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:35] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:36,176] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:37,313] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:37] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:39,134] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:39,324] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:39] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:39,756] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:40,369] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:40,428] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:04:40,428] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 2.000000 seconds
-[2026-03-31 18:04:41,338] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:41] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:42,470] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:04:42,471] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 1.000000 seconds
-[2026-03-31 18:04:43,360] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:43] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:43,840] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:43,881] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:04:43,882] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 4.000000 seconds
-[2026-03-31 18:04:45,377] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:45] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:47,388] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:47] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:48,574] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:48,611] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:04:48,612] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 5.000000 seconds
-[2026-03-31 18:04:49,403] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:49] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:51,416] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:51] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:53,425] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:53] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:53,966] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:54,008] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:04:54,008] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 4.000000 seconds
-[2026-03-31 18:04:55,439] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:55] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:57,453] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:57] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:04:58,480] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:04:58,516] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:04:58,518] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 5.000000 seconds
-[2026-03-31 18:04:59,463] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:04:59] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:01,478] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:01] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:03,497] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:03] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:04,206] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:05:04,248] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:05:04,249] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 6.000000 seconds
-[2026-03-31 18:05:05,509] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:05] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:07,523] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:07] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:09,538] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:09] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:10,977] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:05:11,018] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:05:11,018] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 5.000000 seconds
-[2026-03-31 18:05:11,547] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:11] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:13,570] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:13] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:15,591] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:15] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:16,981] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:05:17,015] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 429 Too Many Requests"
-[2026-03-31 18:05:17,015] [INFO] [groq._base_client] Retrying request to /openai/v1/chat/completions in 5.000000 seconds
-[2026-03-31 18:05:17,614] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:17] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:19,622] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:19] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:21,634] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:21] "GET /api/status/865cabb1 HTTP/1.1" 200 -
-[2026-03-31 18:05:22,328] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
-[2026-03-31 18:05:22,340] [INFO] [backend.pipeline.orchestrator] Pipeline complete for run 865cabb1
-[2026-03-31 18:05:23,648] [INFO] [werkzeug] 127.0.0.1 - - [31/Mar/2026 18:05:23] "GET /api/status/865cabb1 HTTP/1.1" 200 -
+ * Running on http://192.168.106.92:5000
+[2026-04-11 06:41:07,605] [INFO] [werkzeug] [33mPress CTRL+C to quit[0m
+[2026-04-11 06:41:12,351] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:12] "GET / HTTP/1.1" 200 -
+[2026-04-11 06:41:12,387] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:12] "GET /css/style.css HTTP/1.1" 200 -
+[2026-04-11 06:41:12,389] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:12] "[36mGET /js/upload.js HTTP/1.1[0m" 304 -
+[2026-04-11 06:41:12,393] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:12] "[36mGET /js/poller.js HTTP/1.1[0m" 304 -
+[2026-04-11 06:41:12,395] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:12] "GET /js/results.js HTTP/1.1" 200 -
+[2026-04-11 06:41:12,398] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:12] "GET /js/app.js HTTP/1.1" 200 -
+[2026-04-11 06:41:27,413] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:27] "POST /api/search HTTP/1.1" 200 -
+[2026-04-11 06:41:27,421] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:27] "GET /api/status/e24c01b5 HTTP/1.1" 200 -
+[2026-04-11 06:41:27,885] [WARNING] [backend.pipeline.fast_scanner] Ashby API failed for Perplexity: 404 Client Error: Not Found for url: https://api.ashbyhq.com/posting-api/job-board/perplexityai?includeCompensation=true
+[2026-04-11 06:41:27,940] [INFO] [backend.pipeline.fast_scanner] Ashby API: 106 jobs from ElevenLabs
+[2026-04-11 06:41:27,950] [INFO] [backend.pipeline.fast_scanner] Ashby API: 58 jobs from Deepgram
+[2026-04-11 06:41:27,951] [WARNING] [backend.pipeline.fast_scanner] Greenhouse API failed for Retool: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/retool/jobs
+[2026-04-11 06:41:27,954] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 0 jobs from Temporal
+[2026-04-11 06:41:27,972] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 182 jobs from Glean
+[2026-04-11 06:41:27,974] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 56 jobs from Airtable
+[2026-04-11 06:41:27,983] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 185 jobs from Intercom
+[2026-04-11 06:41:28,340] [INFO] [primp] response: https://www.bing.com/search?q=ai+engineer+India+jobs+hiring+now&filters=ex1%3A%22ez3%22 200
+[2026-04-11 06:41:28,397] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 77 jobs from Vercel
+[2026-04-11 06:41:28,608] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 430 jobs from Anthropic
+[2026-04-11 06:41:28,930] [INFO] [backend.pipeline.fast_scanner] Ashby API: 22 jobs from Vapi
+[2026-04-11 06:41:29,319] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22 200
+[2026-04-11 06:41:29,449] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:29] "GET /api/status/e24c01b5 HTTP/1.1" 200 -
+[2026-04-11 06:41:29,873] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Hugging Face: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/huggingface
+[2026-04-11 06:41:29,984] [INFO] [backend.pipeline.fast_scanner] Ashby API: 79 jobs from Cursor
+[2026-04-11 06:41:30,439] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=11&FORM=PERE 200
+[2026-04-11 06:41:31,398] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=21&FORM=PERE1 200
+[2026-04-11 06:41:31,465] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:31] "GET /api/status/e24c01b5 HTTP/1.1" 200 -
+[2026-04-11 06:41:31,643] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Scale AI: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/scaleai
+[2026-04-11 06:41:32,378] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=31&FORM=PERE2 200
+[2026-04-11 06:41:33,339] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=41&FORM=PERE3 200
+[2026-04-11 06:41:33,363] [INFO] [backend.pipeline.fast_scanner] DuckDuckGo search: 0 results
+[2026-04-11 06:41:33,364] [INFO] [backend.pipeline.fast_scanner] Total raw jobs fetched: 1195
+[2026-04-11 06:41:33,371] [INFO] [backend.pipeline.fast_scanner] After title filter: 490 jobs
+[2026-04-11 06:41:33,385] [INFO] [backend.pipeline.fast_scanner] After dedup: 490 unique jobs
+[2026-04-11 06:41:33,385] [INFO] [backend.pipeline.fast_scanner] After relevance filter (>= 0.1): 480 jobs
+[2026-04-11 06:41:33,392] [INFO] [backend.pipeline.fast_scanner] Fast scan complete: returning 40 jobs
+[2026-04-11 06:41:33,408] [INFO] [backend.pipeline.orchestrator] Pipeline complete for run e24c01b5: 40 jobs saved
+[2026-04-11 06:41:33,487] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:41:33] "GET /api/status/e24c01b5 HTTP/1.1" 200 -
+[2026-04-11 06:43:07,653] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 06:43:08,401] [INFO] [primp] response: https://en.wikipedia.org/w/api.php?action=opensearch&profile=fuzzy&limit=1&search=Glean%20Software%20Engineer%2C%20Machine%20Learning%20tech%20stack%20culture%20news%20interview%20process 200
+[2026-04-11 06:43:08,799] [INFO] [primp] response: https://grokipedia.com/api/typeahead?query=Glean+Software+Engineer%2C+Machine+Learning+tech+stack+culture+news+interview+process&limit=1 200
+[2026-04-11 06:43:09,322] [INFO] [primp] response: https://search.brave.com/search?q=Glean+Software+Engineer%2C+Machine+Learning+tech+stack+culture+news+interview+process&source=web 429
+[2026-04-11 06:43:09,980] [INFO] [primp] response: https://search.yahoo.com/search;_ylt=O-q93r-g40TosgGlQtRDBWSr;_ylu=LpvvRH5kgL3O0IJS_ShGFwdPzxxKJ0V6g8RmoXkEB3TfBdY?p=Glean+Software+Engineer%2C+Machine+Learning+tech+stack+culture+news+interview+process 200
+[2026-04-11 06:43:11,407] [INFO] [primp] response: https://html.duckduckgo.com/html/ 200
+[2026-04-11 06:43:13,563] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 06:43:16,885] [INFO] [httpx] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+[2026-04-11 06:43:21,876] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\resume_glean_1.pdf (68.0 KB)
+[2026-04-11 06:43:24,120] [INFO] [backend.agents.pdf_generator] PDF generated: D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\agents\../../data/pdfs\interview_glean_1.pdf (101.1 KB)
+[2026-04-11 06:43:24,255] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:43:24] "POST /api/prep/1 HTTP/1.1" 200 -
+[2026-04-11 06:43:29,130] [INFO] [werkzeug] 127.0.0.1 - - [11/Apr/2026 06:43:29] "GET /api/pdf/resume_glean_1.pdf HTTP/1.1" 200 -

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Hunter Agent</title>
+    <meta name="description" content="AI-powered job search, resume tailoring, and interview preparation tool">
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Marked.js for Markdown rendering -->
@@ -31,25 +32,36 @@
 
                 <div class="form-group">
                     <label for="role">Job Role</label>
-                    <input type="text" id="role" class="form-control" placeholder="e.g. ML Engineer Intern, Data Scientist" required>
+                    <input type="text" id="role" class="form-control" placeholder="e.g. ML Engineer, Data Scientist, Backend Developer" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <input type="text" id="location" class="form-control" placeholder="e.g. India, Remote, Bangalore" value="India">
+                <div class="form-row">
+                    <div class="form-group form-half">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" class="form-control" placeholder="e.g. India, Remote, Bangalore" value="India">
+                    </div>
+                    <div class="form-group form-half">
+                        <label for="experience">Experience Level</label>
+                        <select id="experience" class="form-control">
+                            <option value="">Any Level</option>
+                            <option value="intern">Intern / Student</option>
+                            <option value="entry">Entry Level (0-2 yrs)</option>
+                            <option value="mid">Mid Level (2-5 yrs)</option>
+                            <option value="senior">Senior (5-10 yrs)</option>
+                            <option value="lead">Lead / Staff (10+ yrs)</option>
+                        </select>
+                    </div>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; margin-bottom: 1rem;">Search Jobs</button>
-                <div style="text-align: center;">
-                    <a href="#" style="color: var(--text-muted); text-decoration: underline; font-size: 0.9rem;">View Search History</a>
-                </div>
+                <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; margin-bottom: 1rem;">⚡ Fast Scan Jobs</button>
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">Scans 15+ company career pages + DuckDuckGo — no API tokens used</p>
             </form>
         </div>
 
         <!-- View 2: Progress -->
         <div id="view-progress" class="view glass-card">
             <div class="progress-container">
-                <h2 id="progress-text" style="margin-bottom: 1rem; color: var(--accent);">Initializing...</h2>
+                <h2 id="progress-text" style="margin-bottom: 1rem; color: var(--accent);">Scanning career pages...</h2>
                 <div class="progress-bar-bg">
                     <div id="progress-bar" class="progress-bar-fill"></div>
                 </div>
@@ -61,9 +73,9 @@
         <!-- View 3: Results -->
         <div id="view-results" class="view">
             <div class="results-header glass-card" style="padding: 1.5rem;">
-                <h2 id="summary-text" style="font-size: 1.25rem;">Found 0 jobs — Average match score: 0.0/5</h2>
+                <h2 id="summary-text" style="font-size: 1.25rem;">Found 0 jobs across 0 companies</h2>
                 <div style="display: flex; gap: 1rem; align-items: center;">
-                    <button id="export-btn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Export to CSV</button>
+                    <button id="export-btn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Export CSV</button>
                     <button id="new-search-btn" class="btn" style="padding: 0.5rem 1rem;">New Search</button>
                 </div>
             </div>
@@ -89,7 +101,10 @@
                 </div>
                 
                 <div id="tab-resume" class="tab-content active">
-                    <button id="download-resume" class="btn btn-small" style="margin-bottom: 1rem; float: right;">Download .md</button>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; float: right;">
+                        <button id="download-resume" class="btn btn-small">Download .md</button>
+                        <button id="download-resume-pdf" class="btn btn-small btn-accent" style="display: none;">Download PDF</button>
+                    </div>
                     <div id="content-resume" class="markdown-body"></div>
                 </div>
                 <div id="tab-research" class="tab-content">
@@ -97,7 +112,10 @@
                     <div id="content-research" class="markdown-body"></div>
                 </div>
                 <div id="tab-interview" class="tab-content">
-                    <button id="download-interview" class="btn btn-small" style="margin-bottom: 1rem; float: right;">Download .md</button>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; float: right;">
+                        <button id="download-interview" class="btn btn-small">Download .md</button>
+                        <button id="download-interview-pdf" class="btn btn-small btn-accent" style="display: none;">Download PDF</button>
+                    </div>
                     <div id="content-interview" class="markdown-body"></div>
                 </div>
             </div>

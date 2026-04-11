@@ -4,9 +4,23 @@ Performs web search to augment LLM's knowledge.
 """
 import logging
 from backend.pipeline.rate_limiter import groq_client
-from backend.scraper.search_engine import search_duckduckgo
 
 log = logging.getLogger(__name__)
+
+def _search_web(query: str, max_results: int = 5) -> list:
+    """Search the web for company info using DuckDuckGo."""
+    try:
+        from ddgs import DDGS
+        with DDGS() as ddgs:
+            results = list(ddgs.text(query, max_results=max_results))
+            return [
+                {"title": r.get("title", ""), "snippet": r.get("body", "")}
+                for r in results
+            ]
+    except Exception as e:
+        log.warning(f"Web search failed: {e}")
+        return []
+
 
 def research_company(job: dict) -> str:
     """Generates a company research report based on web search and LLM knowledge."""
@@ -20,7 +34,7 @@ def research_company(job: dict) -> str:
     search_context = ""
     try:
         query = f"{company} {title} tech stack culture news interview process"
-        results = search_duckduckgo(query, max_results=5)
+        results = _search_web(query, max_results=5)
         if results:
             search_context = "\n".join(f"- {r.get('title')}: {r.get('snippet')}" for r in results)
     except Exception as e:

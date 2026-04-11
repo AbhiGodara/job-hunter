@@ -7,37 +7,47 @@ function renderJobs(jobs) {
         return;
     }
 
-    let totalScore = 0;
+    // Group by company for summary
+    const companies = new Set(jobs.map(j => j.company));
+
+    // Source tag colors
+    const portalColors = {
+        'greenhouse': 'rgba(34, 197, 94, 0.15)',
+        'ashby':      'rgba(99, 102, 241, 0.15)',
+        'lever':      'rgba(245, 158, 11, 0.15)',
+        'web':        'rgba(236, 72, 153, 0.15)',
+        'search':     'rgba(236, 72, 153, 0.15)',
+    };
 
     jobs.forEach(job => {
-        totalScore += job.match_score;
-        let starsHtml = '';
-        for (let i = 1; i <= 5; i++) {
-            starsHtml += `<span class="star ${i <= job.match_score ? 'filled' : ''}">★</span>`;
-        }
-        
-        let matchReasonObj;
-        try {
-            matchReasonObj = typeof job.match_reason === 'string' ? job.match_reason : '';
-        } catch { }
+        // Relevance as percentage
+        const relevance = Math.round((job.relevance || 0) * 100);
+        let relevanceClass = 'low';
+        if (relevance >= 70) relevanceClass = 'high';
+        else if (relevance >= 40) relevanceClass = 'medium';
+
+        const portalLabel = job.portal === 'web' || job.portal === 'search' ? '🌐 Web' : job.portal;
+        const tagBg = portalColors[job.portal] || 'rgba(255,255,255,0.1)';
 
         const card = document.createElement('div');
         card.className = 'glass-card job-card';
         card.innerHTML = `
             <div class="job-title">${job.title || 'Unknown Role'}</div>
-            <div class="job-company">${job.company || 'Unknown Company'} • ${job.location || ''} • <span class="tag">${job.portal}</span></div>
-            <div class="job-score-container">${starsHtml}</div>
-            <div class="job-reason">${matchReasonObj}</div>
+            <div class="job-company">${job.company || 'Unknown Company'} • ${job.location || 'N/A'} • <span class="tag" style="background: ${tagBg}">${portalLabel}</span></div>
+            <div class="relevance-bar">
+                <div class="relevance-fill ${relevanceClass}" style="width: ${relevance}%"></div>
+            </div>
+            <div class="relevance-label">${relevance}% match</div>
             <div class="job-actions">
-                <a href="${job.url}" target="_blank" class="btn btn-small btn-outline">Apply Now</a>
+                <a href="${job.url}" target="_blank" class="btn btn-small btn-outline">View Job</a>
                 <button class="btn btn-small prep-btn" data-id="${job.id}">Prep Me ✨</button>
             </div>
         `;
         container.appendChild(card);
     });
 
-    const avgScore = totalScore / jobs.length;
-    document.getElementById('summary-text').textContent = `Found ${jobs.length} jobs — Average match score: ${avgScore.toFixed(1)}/5`;
+    document.getElementById('summary-text').textContent = 
+        `Found ${jobs.length} jobs across ${companies.size} companies`;
 
     document.querySelectorAll('.prep-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -49,12 +59,13 @@ function renderJobs(jobs) {
 
 function exportToCSV(jobs) {
     if (!jobs || jobs.length === 0) return;
-    const headers = ['Title', 'Company', 'Location', 'Score', 'URL'];
+    const headers = ['Title', 'Company', 'Location', 'Portal', 'Relevance', 'URL'];
     const rows = jobs.map(j => [
         `"${(j.title || '').replace(/"/g, '""')}"`,
         `"${(j.company || '').replace(/"/g, '""')}"`,
         `"${(j.location || '').replace(/"/g, '""')}"`,
-        j.match_score,
+        `"${(j.portal || '').replace(/"/g, '""')}"`,
+        Math.round((j.relevance || 0) * 100) + '%',
         `"${(j.url || '').replace(/"/g, '""')}"`
     ]);
     

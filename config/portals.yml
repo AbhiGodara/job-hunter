@@ -1,23 +1,113 @@
-# Multi-Portal Job Scraping Configuration
+# Job portal configuration
+# search_engine.py reads PORTALS from backend/config.py — this file is used by scraper_portals (Playwright)
+# The real portal list is in backend/config.py
 
-portals:
-  - name: "LinkedIn"
-    url: "https://www.linkedin.com/jobs/"
-    job_selector: ".job-card"
-    title_selector: ".job-card__title"
-    company_selector: ".job-card__company"
-    location_selector: ".job-card__location"
+# Tracked companies for direct Playwright scraping
+# Add any company you want to track here with their exact careers page URL
+tracked_companies:
 
-  - name: "Indeed"
-    url: "https://www.indeed.com/jobs"
-    job_selector: ".job_seen_beacon"
-    title_selector: ".jobTitle"
-    company_selector: ".companyName"
-    location_selector: ".companyLocation"
+  # --- Greenhouse companies (also have free JSON API) ---
+  - name: "Anthropic"
+    careers_url: "https://job-boards.greenhouse.io/anthropic"
+    api: "https://boards-api.greenhouse.io/v1/boards/anthropic/jobs"
+    enabled: true
 
-  - name: "Glassdoor"
-    url: "https://www.glassdoor.com/Job/index.htm"
-    job_selector: ".jobListing"
-    title_selector: ".jobTitle"
-    company_selector: ".company"
-    location_selector: ".location"
+  - name: "Airtable"
+    careers_url: "https://job-boards.greenhouse.io/airtable"
+    api: "https://boards-api.greenhouse.io/v1/boards/airtable/jobs"
+    enabled: true
+
+  - name: "Vercel"
+    careers_url: "https://job-boards.greenhouse.io/vercel"
+    api: "https://boards-api.greenhouse.io/v1/boards/vercel/jobs"
+    enabled: true
+
+  - name: "Intercom"
+    careers_url: "https://job-boards.greenhouse.io/intercom"
+    api: "https://boards-api.greenhouse.io/v1/boards/intercom/jobs"
+    enabled: true
+
+  - name: "Glean"
+    careers_url: "https://job-boards.greenhouse.io/gleanwork"
+    api: "https://boards-api.greenhouse.io/v1/boards/gleanwork/jobs"
+    enabled: true
+
+  - name: "Temporal"
+    careers_url: "https://job-boards.greenhouse.io/temporal"
+    api: "https://boards-api.greenhouse.io/v1/boards/temporal/jobs"
+    enabled: true
+
+  - name: "Retool"
+    careers_url: "https://job-boards.greenhouse.io/retool"
+    api: "https://boards-api.greenhouse.io/v1/boards/retool/jobs"
+    enabled: true
+
+  # --- Ashby companies ---
+  - name: "ElevenLabs"
+    careers_url: "https://jobs.ashbyhq.com/elevenlabs"
+    enabled: true
+
+  - name: "Deepgram"
+    careers_url: "https://jobs.ashbyhq.com/deepgram"
+    enabled: true
+
+  - name: "Vapi"
+    careers_url: "https://jobs.ashbyhq.com/vapi"
+    enabled: true
+
+  - name: "Cursor"
+    careers_url: "https://jobs.ashbyhq.com/cursor"
+    enabled: true
+
+  - name: "Perplexity"
+    careers_url: "https://jobs.ashbyhq.com/perplexityai"
+    enabled: true
+
+  # --- Lever companies ---
+  - name: "Scale AI"
+    careers_url: "https://jobs.lever.co/scaleai"
+    enabled: true
+
+  - name: "Hugging Face"
+    careers_url: "https://jobs.lever.co/huggingface"
+    enabled: true
+
+  # --- Custom career pages ---
+  - name: "OpenAI"
+    careers_url: "https://openai.com/careers"
+    enabled: true
+
+  - name: "Google DeepMind"
+    careers_url: "https://deepmind.google/careers/"
+    enabled: true
+
+# Title filter — used when scraping to decide if a job is relevant
+# At least 1 positive keyword must appear in the title
+# 0 negative keywords must appear in the title
+title_filter:
+  positive:
+    - "ML"
+    - "Machine Learning"
+    - "AI"
+    - "Data Science"
+    - "Data Scientist"
+    - "Data Engineer"
+    - "Deep Learning"
+    - "NLP"
+    - "LLM"
+    - "Python"
+    - "Backend"
+    - "Software Engineer"
+    - "Software Developer"
+    - "Full Stack"
+    - "Research"
+  negative:
+    - "Intern"
+    - "Sales"
+    - "Marketing"
+    - "HR"
+    - "Finance"
+    - "Legal"
+    - "Designer"
+    - "iOS"
+    - "Android"
