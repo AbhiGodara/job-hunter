@@ -443,3 +443,135 @@ For more details, see: https://docs.crewai.com/en/learn/llm-connections
 [2026-04-15 17:03:23,917] [INFO] [backend.pipeline.orchestrator] Resume embedded into ChromaDB for run df27be0f
 [2026-04-15 17:03:23,943] [INFO] [backend.pipeline.orchestrator] Pipeline complete for run df27be0f: 40 jobs saved
 [2026-04-15 17:03:24,198] [INFO] [werkzeug] 127.0.0.1 - - [15/Apr/2026 17:03:24] "GET /api/status/df27be0f HTTP/1.1" 200 -
+[2026-04-17 02:45:16,088] [INFO] [werkzeug] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.74.214.207:5000
+[2026-04-17 02:45:16,088] [INFO] [werkzeug] [33mPress CTRL+C to quit[0m
+[2026-04-17 02:45:25,534] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:25] "GET / HTTP/1.1" 200 -
+[2026-04-17 02:45:25,576] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:25] "GET /css/style.css HTTP/1.1" 200 -
+[2026-04-17 02:45:25,585] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:25] "GET /js/app.js HTTP/1.1" 200 -
+[2026-04-17 02:45:25,587] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:25] "GET /js/results.js HTTP/1.1" 200 -
+[2026-04-17 02:45:25,611] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:25] "GET /js/upload.js HTTP/1.1" 200 -
+[2026-04-17 02:45:25,616] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:25] "GET /js/poller.js HTTP/1.1" 200 -
+[2026-04-17 02:45:28,414] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:28] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2026-04-17 02:45:39,815] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:39] "POST /api/search HTTP/1.1" 200 -
+[2026-04-17 02:45:39,836] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:39] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:40,693] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 59 jobs from Airtable
+[2026-04-17 02:45:40,712] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 174 jobs from Intercom
+[2026-04-17 02:45:40,718] [WARNING] [backend.pipeline.fast_scanner] Greenhouse API failed for Retool: 404 Client Error: Not Found for url: https://boards-api.greenhouse.io/v1/boards/retool/jobs
+[2026-04-17 02:45:40,720] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 0 jobs from Temporal
+[2026-04-17 02:45:40,811] [INFO] [backend.pipeline.fast_scanner] Ashby API: 23 jobs from Vapi
+[2026-04-17 02:45:40,836] [WARNING] [backend.pipeline.fast_scanner] Ashby API failed for Perplexity: 404 Client Error: Not Found for url: https://api.ashbyhq.com/posting-api/job-board/perplexityai?includeCompensation=true
+[2026-04-17 02:45:40,849] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 80 jobs from Vercel
+[2026-04-17 02:45:40,861] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 181 jobs from Glean
+[2026-04-17 02:45:41,087] [INFO] [backend.pipeline.fast_scanner] Ashby API: 76 jobs from Cursor
+[2026-04-17 02:45:41,114] [INFO] [backend.pipeline.fast_scanner] Greenhouse API: 427 jobs from Anthropic
+[2026-04-17 02:45:41,292] [INFO] [backend.pipeline.fast_scanner] Ashby API: 60 jobs from Deepgram
+[2026-04-17 02:45:41,300] [INFO] [backend.pipeline.fast_scanner] Ashby API: 109 jobs from ElevenLabs
+[2026-04-17 02:45:41,965] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:41] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:42,518] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Scale AI: 404 Client Error: Not Found for url: https://api.lever.co/v0/postings/scaleai
+[2026-04-17 02:45:42,818] [INFO] [primp] response: https://www.bing.com/search?q=ai+engineer+India+jobs+hiring+now&filters=ex1%3A%22ez3%22 200
+[2026-04-17 02:45:43,993] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:43] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:44,156] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22 200
+[2026-04-17 02:45:45,375] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=11&FORM=PERE 200
+[2026-04-17 02:45:46,014] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:46] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:46,604] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=21&FORM=PERE1 200
+[2026-04-17 02:45:47,681] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=31&FORM=PERE2 200
+[2026-04-17 02:45:48,030] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:48] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:48,857] [INFO] [primp] response: https://www.bing.com/search?q=%22ai+engineer%22+jobs+India+site%3Alinkedin.com+OR+site%3Alever.co+OR+site%3Agreenhouse.io&filters=ex1%3A%22ez3%22&first=41&FORM=PERE3 200
+[2026-04-17 02:45:48,870] [INFO] [backend.pipeline.fast_scanner] DuckDuckGo search: 0 results
+[2026-04-17 02:45:50,050] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:50] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:52,075] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:52] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:52,184] [WARNING] [backend.pipeline.fast_scanner] Lever API failed for Hugging Face: HTTPSConnectionPool(host='api.lever.co', port=443): Read timed out. (read timeout=10)
+[2026-04-17 02:45:52,186] [INFO] [backend.pipeline.fast_scanner] Total raw jobs fetched: 1189
+[2026-04-17 02:45:52,200] [INFO] [backend.pipeline.fast_scanner] After title filter: 493 jobs
+[2026-04-17 02:45:52,218] [INFO] [backend.pipeline.fast_scanner] After dedup: 493 unique jobs
+[2026-04-17 02:45:52,218] [INFO] [backend.pipeline.fast_scanner] After relevance filter (>= 0.1): 490 jobs
+[2026-04-17 02:45:52,240] [INFO] [backend.pipeline.fast_scanner] Fast scan complete: returning 40 jobs
+[2026-04-17 02:45:54,247] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:54] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:56,300] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:56] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:45:58,326] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:45:58] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:00,353] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:00] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:01,461] [INFO] [chromadb.telemetry.product.posthog] Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+[2026-04-17 02:46:02,114] [INFO] [backend.resume.rag] ChromaDB initialized at D:\ml_udemy\00 ML CODE\Projects\job-hunter-agent\backend\resume\../../data/chroma_db
+[2026-04-17 02:46:02,370] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:02] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:04,387] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:04] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:06,409] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:06] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:08,436] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:08] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:10,451] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:10] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:12,578] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:12] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:15,014] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:15] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:18,014] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:18] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:21,014] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:21] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:24,022] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:24] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:26,041] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:26] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:28,071] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:28] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:31,014] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:31] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:34,018] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:34] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:37,011] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:37] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:39,034] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:39] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:41,051] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:41] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:43,073] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:43] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:46,030] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:46] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:49,020] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:49] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:53,996] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:53] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:46:57,018] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:46:57] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:00,043] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:00] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:03,175] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:03] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:06,068] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:06] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:08,237] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:08] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:10,668] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:10] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:13,172] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:13] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:16,050] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:16] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:19,028] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:19] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:22,012] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:22] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:25,018] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:25] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:27,146] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:27] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:28,378] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:28,726] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:29,079] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:29,159] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:29,165] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:29] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:29,190] [INFO] [sentence_transformers.base.model] Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-04-17 02:47:29,516] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:29,581] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:29,925] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:30,138] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+[2026-04-17 02:47:30,551] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:30,551] [WARNING] [huggingface_hub.utils._http] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-04-17 02:47:30,612] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:31,088] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:31,149] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:31,179] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:31] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:31,703] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+[2026-04-17 02:47:32,326] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:32,388] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:33,200] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:33] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:34,584] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-17 02:47:34,913] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-17 02:47:35,223] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:35] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:35,240] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-17 02:47:35,553] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-17 02:47:35,972] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:36,046] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:37,220] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:37,245] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:37] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:37,706] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:38,070] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:38,138] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:38,564] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:38,625] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:38,961] [INFO] [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+[2026-04-17 02:47:39,267] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:39] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:39,472] [INFO] [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-04-17 02:47:40,051] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-17 02:47:40,681] [INFO] [httpx] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+[2026-04-17 02:47:41,030] [INFO] [httpx] HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+[2026-04-17 02:47:41,044] [INFO] [backend.resume.rag] Loaded embedding model: all-MiniLM-L6-v2
+[2026-04-17 02:47:41,136] [INFO] [backend.resume.rag] Resume chunked into 7 sections: ['contact_info', 'experience', 'education', 'projects', 'achievements', 'skills', 'other']
+[2026-04-17 02:47:41,297] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:41] "GET /api/status/6713e7ca HTTP/1.1" 200 -
+[2026-04-17 02:47:42,763] [INFO] [backend.resume.rag] Embedded 7 resume chunks into collection 'resume_6713e7ca'
+[2026-04-17 02:47:42,763] [INFO] [backend.pipeline.orchestrator] Resume embedded into ChromaDB for run 6713e7ca
+[2026-04-17 02:47:42,795] [INFO] [backend.pipeline.orchestrator] Pipeline complete for run 6713e7ca: 40 jobs saved
+[2026-04-17 02:47:43,320] [INFO] [werkzeug] 10.74.214.207 - - [17/Apr/2026 02:47:43] "GET /api/status/6713e7ca HTTP/1.1" 200 -
