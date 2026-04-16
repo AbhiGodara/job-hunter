@@ -1,6 +1,11 @@
 """
 Flask API server for Job Hunter Agent.
 Serves the frontend and handles search, prep, and PDF download requests.
+
+Enhanced with:
+- CrewAI multi-agent prep pipeline
+- RAG-based resume retrieval  
+- Structured job description API
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -11,6 +16,9 @@ from flask_cors import CORS
 from backend.storage.db import init_db, get_conn
 from backend.resume.parser import parse_resume
 from backend.pipeline.orchestrator import start_pipeline_async, get_run_status
+import logging
+
+log = logging.getLogger(__name__)
 
 app = Flask(__name__, static_folder="../frontend", static_url_path="")
 CORS(app)
@@ -53,11 +61,8 @@ def status(run_id):
 @app.route("/api/prep/<int:job_id>", methods=["POST"])
 def prep(job_id):
     """On-demand: generate tailored resume + research + interview prep for one job.
-    This is the ONLY place where Groq LLM is called."""
-    from backend.pipeline.rate_limiter import groq_client
-    from backend.agents.resume_writer import write_resume
-    from backend.agents.researcher import research_company
-    from backend.agents.interview_prep import prep_interview
+    Uses CrewAI multi-agent system with RAG-enhanced resume context."""
+    from backend.agents.crew import run_prep_crew
     from backend.agents.pdf_generator import generate_pdf
 
     with get_conn() as conn:
@@ -69,8 +74,7 @@ def prep(job_id):
     if not job or not run:
         return jsonify({"error": "Job not found"}), 404
 
-    # Always use the properly parsed resume text stored in DB
-    # (parsing was done by parse_resume on upload — no garbled binary)
+    # Get resume text from DB
     resume_text = ""
     if run:
         try:
@@ -82,11 +86,28 @@ def prep(job_id):
         return jsonify({"error": "Resume text not found. Please re-upload your resume."}), 400
 
     job_dict = dict(job)
+    run_id = job_dict.get("run_id", "")
 
-    # Generate all three prep outputs using Groq
-    resume_md    = write_resume(job_dict, resume_text)
-    research_md  = research_company(job_dict)
-    interview_md = prep_interview(job_dict, resume_text)
+    # Try RAG retrieval first, fallback to raw resume text
+    resume_context = resume_text
+    try:
+        from backend.resume.rag import retrieve_resume_context
+        job_desc_for_rag = f"{job_dict.get('title', '')} {job_dict.get('description', '')} {job_dict.get('skills', '')} {job_dict.get('requirements', '')}"
+        rag_context = retrieve_resume_context(run_id, job_desc_for_rag)
+        if rag_context and len(rag_context) > 100:
+            resume_context = rag_context
+            log.info(f"Using RAG-retrieved resume context ({len(resume_context)} chars)")
+        else:
+            log.info("RAG context too short, using raw resume text")
+    except Exception as e:
+        log.warning(f"RAG retrieval failed, using raw resume text: {e}")
+
+    # Run CrewAI multi-agent prep
+    result = run_prep_crew(job_dict, resume_context)
+
+    resume_md = result.get("resume", "")
+    research_md = result.get("research", "")
+    interview_md = result.get("interview", "")
 
     # Generate PDFs
     safe_name = f"{job_dict.get('company', 'company')}_{job_id}".replace(" ", "_").lower()

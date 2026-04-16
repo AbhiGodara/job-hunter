@@ -6,6 +6,9 @@ relevance, and returns diverse results across companies.
 Also queries DuckDuckGo for supplementary job results from LinkedIn,
 Indeed, Glassdoor, etc.
 
+Enhanced: Now extracts structured JD fields (salary, experience, skills,
+responsibilities) from ATS API responses.
+
 No LLM tokens used — pure HTTP + JSON parsing.
 """
 import logging
@@ -77,55 +80,188 @@ def detect_api(company: dict) -> Optional[dict]:
     return None
 
 
-# ── API Parsers (ported from scan.mjs) ───────────────────────────────
+# ── Structured JD Extraction Helpers ─────────────────────────────────
+
+def _extract_salary_from_text(text: str) -> str:
+    """Extract salary range from description text using regex."""
+    if not text:
+        return ""
+    patterns = [
+        r"\$[\d,]+(?:\s*[-–]\s*\$[\d,]+)?(?:\s*(?:per\s+)?(?:year|yr|annum|annually|month|hr|hour))?",
+        r"(?:USD|INR|EUR|GBP)\s*[\d,]+\s*[-–]\s*[\d,]+",
+        r"[\d,]+\s*[-–]\s*[\d,]+\s*(?:LPA|CTC|per\s+annum)",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, re.IGNORECASE)
+        if match:
+            return match.group(0).strip()
+    return ""
+
+
+def _extract_experience_level(title: str, text: str) -> str:
+    """Infer experience level from title and description."""
+    combined = f"{title} {text[:500]}".lower()
+    if any(kw in combined for kw in ["intern", "internship", "student", "co-op"]):
+        return "Intern"
+    if any(kw in combined for kw in ["junior", "entry level", "entry-level", "new grad", "graduate", "0-2 years", "0-1 year"]):
+        return "Entry Level"
+    if any(kw in combined for kw in ["senior", "sr.", "sr ", "5+ years", "5-10 years", "7+ years"]):
+        return "Senior"
+    if any(kw in combined for kw in ["lead", "staff", "principal", "architect", "head of", "director"]):
+        return "Lead / Staff"
+    if any(kw in combined for kw in ["mid", "2-5 years", "3+ years", "3-5 years"]):
+        return "Mid Level"
+    return ""
+
+
+def _extract_skills(text: str) -> str:
+    """Extract known tech skills from description text."""
+    if not text:
+        return ""
+    known_skills = [
+        "Python", "JavaScript", "TypeScript", "Java", "Go", "Rust", "C++", "C#",
+        "React", "Vue", "Angular", "Node.js", "Django", "Flask", "FastAPI",
+        "AWS", "GCP", "Azure", "Docker", "Kubernetes", "Terraform",
+        "PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch",
+        "PyTorch", "TensorFlow", "Scikit-learn", "Pandas", "NumPy",
+        "LangChain", "LLM", "NLP", "Computer Vision", "Deep Learning",
+        "Machine Learning", "Data Science", "MLOps", "CI/CD",
+        "REST API", "GraphQL", "gRPC", "Microservices",
+        "Git", "Linux", "SQL", "NoSQL", "Spark", "Kafka", "Airflow",
+        "RAG", "Vector Database", "ChromaDB", "Pinecone", "FAISS",
+    ]
+    found = []
+    text_lower = text.lower()
+    for skill in known_skills:
+        if skill.lower() in text_lower:
+            found.append(skill)
+    return ", ".join(found[:15])  # Cap at 15 most relevant
+
+
+def _extract_employment_type(text: str) -> str:
+    """Extract employment type from text."""
+    if not text:
+        return ""
+    text_lower = text.lower()
+    if "full-time" in text_lower or "full time" in text_lower:
+        return "Full-time"
+    if "part-time" in text_lower or "part time" in text_lower:
+        return "Part-time"
+    if "contract" in text_lower:
+        return "Contract"
+    if "freelance" in text_lower:
+        return "Freelance"
+    return "Full-time"  # Default assumption
+
+
+# ── API Parsers (enhanced with structured extraction) ────────────────
 
 def parse_greenhouse(data: dict, company_name: str) -> List[Dict]:
     jobs = data.get("jobs", [])
-    return [
-        {
-            "title":    j.get("title", ""),
-            "url":      j.get("absolute_url", ""),
-            "company":  company_name,
-            "location": (j.get("location") or {}).get("name", ""),
-            "portal":   "greenhouse",
-            "updated_at": j.get("updated_at", ""),
-            "description": _clean_html(j.get("content", "")),
-        }
-        for j in jobs
-    ]
+    results = []
+    for j in jobs:
+        raw_desc = _clean_html(j.get("content", ""))
+        title = j.get("title", "")
+        location = (j.get("location") or {}).get("name", "")
+
+        results.append({
+            "title":            title,
+            "url":              j.get("absolute_url", ""),
+            "company":          company_name,
+            "location":         location,
+            "portal":           "greenhouse",
+            "updated_at":       j.get("updated_at", ""),
+            "description":      raw_desc,
+            "salary_range":     _extract_salary_from_text(raw_desc),
+            "experience_level": _extract_experience_level(title, raw_desc),
+            "employment_type":  _extract_employment_type(raw_desc),
+            "skills":           _extract_skills(raw_desc),
+            "responsibilities": "",
+            "requirements":     "",
+            "benefits":         "",
+        })
+    return results
 
 
 def parse_ashby(data: dict, company_name: str) -> List[Dict]:
     jobs = data.get("jobs", [])
-    return [
-        {
-            "title":    j.get("title", ""),
-            "url":      j.get("jobUrl", ""),
-            "company":  company_name,
-            "location": j.get("location", ""),
-            "portal":   "ashby",
-            "updated_at": j.get("updatedAt", ""),
-            "description": j.get("descriptionPlain", "") or "",
-        }
-        for j in jobs
-    ]
+    results = []
+    for j in jobs:
+        desc_plain = j.get("descriptionPlain", "") or ""
+        title = j.get("title", "")
+        location = j.get("location", "")
+
+        # Ashby compensation data
+        compensation = j.get("compensation", {}) or {}
+        salary = ""
+        if compensation:
+            comp_range = compensation.get("compensationRange", {}) or {}
+            min_val = comp_range.get("min", {})
+            max_val = comp_range.get("max", {})
+            if min_val and max_val:
+                currency = min_val.get("currencyCode", "USD")
+                salary = f"{currency} {min_val.get('value', '?')} - {max_val.get('value', '?')}"
+
+        results.append({
+            "title":            title,
+            "url":              j.get("jobUrl", ""),
+            "company":          company_name,
+            "location":         location,
+            "portal":           "ashby",
+            "updated_at":       j.get("updatedAt", ""),
+            "description":      desc_plain[:2000],
+            "salary_range":     salary or _extract_salary_from_text(desc_plain),
+            "experience_level": _extract_experience_level(title, desc_plain),
+            "employment_type":  j.get("employmentType", "") or _extract_employment_type(desc_plain),
+            "skills":           _extract_skills(desc_plain),
+            "responsibilities": "",
+            "requirements":     "",
+            "benefits":         "",
+        })
+    return results
 
 
 def parse_lever(data, company_name: str) -> List[Dict]:
     if not isinstance(data, list):
         return []
-    return [
-        {
-            "title":    j.get("text", ""),
-            "url":      j.get("hostedUrl", ""),
-            "company":  company_name,
-            "location": (j.get("categories") or {}).get("location", ""),
-            "portal":   "lever",
-            "updated_at": str(j.get("createdAt", "")),
-            "description": j.get("descriptionPlain", "") or "",
-        }
-        for j in data
-    ]
+    results = []
+    for j in data:
+        desc_plain = j.get("descriptionPlain", "") or ""
+        title = j.get("text", "")
+        categories = j.get("categories", {}) or {}
+        location = categories.get("location", "")
+        commitment = categories.get("commitment", "")
+
+        # Lever additional lists (responsibilities, requirements)
+        lists = j.get("lists", []) or []
+        responsibilities = ""
+        requirements = ""
+        for lst in lists:
+            lst_text = lst.get("text", "").lower()
+            content = "\n".join(item.get("content", "") for item in lst.get("items", []))
+            content = _clean_html(content)
+            if "responsib" in lst_text or "what you" in lst_text:
+                responsibilities = content
+            elif "require" in lst_text or "qualif" in lst_text:
+                requirements = content
+
+        results.append({
+            "title":            title,
+            "url":              j.get("hostedUrl", ""),
+            "company":          company_name,
+            "location":         location,
+            "portal":           "lever",
+            "updated_at":       str(j.get("createdAt", "")),
+            "description":      desc_plain[:2000],
+            "salary_range":     _extract_salary_from_text(desc_plain),
+            "experience_level": _extract_experience_level(title, desc_plain),
+            "employment_type":  commitment or _extract_employment_type(desc_plain),
+            "skills":           _extract_skills(desc_plain + " " + requirements),
+            "responsibilities": responsibilities[:1000],
+            "requirements":     requirements[:1000],
+            "benefits":         "",
+        })
+    return results
 
 
 PARSERS = {
@@ -138,12 +274,12 @@ PARSERS = {
 # ── Clean HTML helper ────────────────────────────────────────────────
 
 def _clean_html(html_text: str) -> str:
-    """Strip HTML tags and return plain text (first 500 chars)."""
+    """Strip HTML tags and return plain text."""
     if not html_text:
         return ""
     clean = re.sub(r"<[^>]+>", " ", html_text)
     clean = re.sub(r"\s+", " ", clean).strip()
-    return clean[:500]
+    return clean
 
 
 # ── Title Filter ─────────────────────────────────────────────────────
@@ -371,13 +507,20 @@ def search_duckduckgo(role: str, location: str, max_results: int = 20) -> List[D
                         seen.add(url_clean)
                         
                         all_results.append({
-                            "title": _clean_ddg_title(title),
-                            "url": url_clean,
-                            "company": _extract_company_from_title(title),
-                            "location": location,
-                            "portal": "web",
-                            "updated_at": "",
-                            "description": snippet[:500],
+                            "title":            _clean_ddg_title(title),
+                            "url":              url_clean,
+                            "company":          _extract_company_from_title(title),
+                            "location":         location,
+                            "portal":           "web",
+                            "updated_at":       "",
+                            "description":      snippet[:2000],
+                            "salary_range":     _extract_salary_from_text(snippet),
+                            "experience_level": _extract_experience_level(_clean_ddg_title(title), snippet),
+                            "employment_type":  _extract_employment_type(snippet),
+                            "skills":           _extract_skills(snippet),
+                            "responsibilities": "",
+                            "requirements":     "",
+                            "benefits":         "",
                         })
                 except Exception as e:
                     log.warning(f"DDG query failed for '{query[:50]}...': {e}")
@@ -405,15 +548,23 @@ def _search_ddgs_fallback(role: str, location: str, max_results: int = 20) -> Li
             for r in results:
                 url = r.get("href") or r.get("url", "")
                 title = r.get("title", "Job Posting")
+                snippet = r.get("body", "")
                 if url:
                     output.append({
-                        "title": _clean_ddg_title(title),
-                        "url": url.split("?")[0].rstrip("/"),
-                        "company": _extract_company_from_title(title),
-                        "location": location,
-                        "portal": "web",
-                        "updated_at": "",
-                        "description": r.get("body", "")[:500],
+                        "title":            _clean_ddg_title(title),
+                        "url":              url.split("?")[0].rstrip("/"),
+                        "company":          _extract_company_from_title(title),
+                        "location":         location,
+                        "portal":           "web",
+                        "updated_at":       "",
+                        "description":      snippet[:2000],
+                        "salary_range":     _extract_salary_from_text(snippet),
+                        "experience_level": _extract_experience_level(_clean_ddg_title(title), snippet),
+                        "employment_type":  _extract_employment_type(snippet),
+                        "skills":           _extract_skills(snippet),
+                        "responsibilities": "",
+                        "requirements":     "",
+                        "benefits":         "",
                     })
             log.info(f"DDG fallback: {len(output)} results")
             return output

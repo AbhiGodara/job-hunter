@@ -21,3 +21,13 @@ groq>=0.5.0
 
 # Markdown → HTML (for PDF generation)
 markdown>=3.5.0
+
+# Multi-Agent AI (CrewAI)
+crewai>=0.120.0
+
+# RAG — Vector store & Embeddings
+chromadb>=0.6.0
+sentence-transformers>=3.0.0
+
+# Structured Output
+pydantic>=2.0.0

@@ -2,7 +2,8 @@
 Pipeline orchestrator — coordinates the fast scan and prep phases.
 
 Scan phase: Zero-token (fast_scanner.py handles everything)
-Prep phase: On-demand Groq calls only when user clicks a specific job
+Prep phase: On-demand CrewAI multi-agent calls when user clicks a job
+RAG phase: Embeds resume on upload for retrieval during prep
 """
 import uuid
 import threading
@@ -41,8 +42,10 @@ def get_run_status(run_id: str) -> dict:
         if not row:
             return {"error": "run not found"}
         jobs = conn.execute(
-            "SELECT id, title, company, location, url, portal, relevance "
-            "FROM jobs WHERE run_id=? ORDER BY relevance DESC",
+            """SELECT id, title, company, location, url, portal, relevance,
+                      description, salary_range, experience_level, employment_type,
+                      skills, responsibilities, requirements, benefits
+               FROM jobs WHERE run_id=? ORDER BY relevance DESC""",
             (run_id,),
         ).fetchall()
         return {
@@ -60,7 +63,9 @@ def run_pipeline(run_id: str, role: str, location: str, experience: str, resume_
     1. Fetch jobs from ATS APIs (Greenhouse, Ashby, Lever) + DuckDuckGo
     2. Filter by title keywords
     3. Rank by role/location/experience relevance
-    4. Save to DB
+    4. Extract structured JD fields (salary, skills, requirements)
+    5. Embed resume into ChromaDB for RAG retrieval
+    6. Save to DB
     """
     try:
         update_run(run_id, status="running", stage="Scanning company career pages...", progress=10)
@@ -72,16 +77,28 @@ def run_pipeline(run_id: str, role: str, location: str, experience: str, resume_
             update_run(run_id, status="failed", stage="No matching jobs found — try different keywords")
             return
 
-        update_run(run_id, stage=f"Found {len(jobs)} matching jobs. Saving...", progress=80)
+        update_run(run_id, stage=f"Found {len(jobs)} matching jobs. Processing...", progress=60)
 
-        # Save to DB
+        # Embed resume into ChromaDB for RAG (background, non-blocking)
+        try:
+            from backend.resume.rag import embed_resume
+            embed_resume(resume_text, run_id)
+            log.info(f"Resume embedded into ChromaDB for run {run_id}")
+        except Exception as e:
+            log.warning(f"Resume embedding failed (RAG will fallback to raw text): {e}")
+
+        update_run(run_id, stage=f"Saving {len(jobs)} jobs to database...", progress=80)
+
+        # Save to DB with all structured fields
         with get_conn() as conn:
             for job in jobs:
                 try:
                     conn.execute("""
                         INSERT OR IGNORE INTO jobs
-                        (run_id, url, title, company, location, portal, relevance, description)
-                        VALUES (?,?,?,?,?,?,?,?)
+                        (run_id, url, title, company, location, portal, relevance,
+                         description, salary_range, experience_level, employment_type,
+                         skills, responsibilities, requirements, benefits)
+                        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                     """, (
                         run_id,
                         job.get("url", ""),
@@ -90,7 +107,14 @@ def run_pipeline(run_id: str, role: str, location: str, experience: str, resume_
                         job.get("location", ""),
                         job.get("portal", ""),
                         round(job.get("relevance", 0), 2),
-                        job.get("description", "")[:500],
+                        job.get("description", "")[:2000],
+                        job.get("salary_range", ""),
+                        job.get("experience_level", ""),
+                        job.get("employment_type", ""),
+                        job.get("skills", ""),
+                        job.get("responsibilities", "")[:1000],
+                        job.get("requirements", "")[:1000],
+                        job.get("benefits", "")[:500],
                     ))
                 except Exception as e:
                     log.warning(f"Failed to insert job {job.get('url')}: {e}")

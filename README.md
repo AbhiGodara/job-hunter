@@ -1,25 +1,133 @@
-# Job Hunter Agent
+# Job Hunter Agent 🤖
 
-A 5-stage AI pipeline that automates job searching, matching, and interview preparation.
+A **multi-agent AI system** that automates job searching, resume tailoring, and interview preparation — built with CrewAI, RAG, and Pydantic.
 
-## Features
-1. **Search & Scrape**: Automatically discovers jobs across multiple portals with DuckDuckGo and Bing fallback.
-2. **Robust Extraction**: Fetches job descriptions overcoming React SPAs via Playwright, then structures into JSON via LLM.
-3. **AI Matching**: Scores your resume against found jobs to help you focus on the best opportunities.
-4. **Tailored Resume Generator**: Reconstructs your resume to highlight the skills relevant to the specific job you select.
-5. **Interview Prep**: Researches the company and prepares a bespoke strategy guide with custom questions and answers.
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   Frontend (Vanilla JS)                  │
+│  Search Form → Progress View → Job Cards (expandable)   │
+│           → Prep Modal with Agent Status                 │
+└────────────────────┬────────────────────────────────────┘
+                     │ REST API
+┌────────────────────▼────────────────────────────────────┐
+│                Flask Backend (server.py)                  │
+├─────────────────────────────────────────────────────────┤
+│  Fast Scanner (Zero-Token)        │  CrewAI Prep Suite  │
+│  ├── Greenhouse API               │  ├── Resume Tailor  │
+│  ├── Ashby API                     │  ├── Researcher     │
+│  ├── Lever API                     │  └── Interview Coach│
+│  └── DuckDuckGo Search            │                     │
+├─────────────────────────────────────────────────────────┤
+│  RAG Pipeline              │  Structured Output          │
+│  ├── Resume Chunker        │  ├── Pydantic Schemas       │
+│  ├── Sentence-Transformers │  └── JD Field Extraction    │
+│  └── ChromaDB (Vector DB)  │                             │
+├─────────────────────────────────────────────────────────┤
+│  SQLite DB  │  PDF Generator (Playwright)  │  Cache      │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Key Features
+
+### 1. Zero-Token Fast Scan
+Queries 15+ company career pages (Greenhouse, Ashby, Lever APIs) and DuckDuckGo simultaneously with zero LLM tokens. Extracts structured JD fields (salary, experience, skills) directly from API responses.
+
+### 2. CrewAI Multi-Agent System
+Three specialized AI agents collaborate sequentially:
+- **Resume Tailor Agent** — Rewrites your resume to match the target JD
+- **Company Researcher Agent** — Gathers intelligence about the company via web search
+- **Interview Coach Agent** — Creates a personalized interview prep guide
+
+### 3. RAG Pipeline (ChromaDB + Sentence-Transformers)
+Your resume is chunked into semantic sections (experience, skills, education, projects) and embedded into ChromaDB using `all-MiniLM-L6-v2`. When you click "Prep Me", the most relevant resume sections are retrieved based on JD similarity.
+
+### 4. Structured Job Descriptions
+Each job card displays:
+- 💰 Salary range (extracted from ATS data)
+- 📊 Experience level (inferred from title + description)
+- 🏷️ Skills (auto-detected from known tech stack)
+- 📋 Expandable JD with description, requirements, responsibilities
+
+### 5. PDF Generation
+ATS-compatible PDFs generated via Playwright headless Chromium with professional styling.
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Vanilla JS, CSS (Glassmorphism, dark mode) |
+| Backend | Python, Flask, Flask-CORS |
+| AI Agents | CrewAI, Groq (Llama 3.3 70B) |
+| RAG | ChromaDB, Sentence-Transformers |
+| Scraping | Requests, DuckDuckGo Search |
+| Database | SQLite |
+| PDF | Playwright, Markdown |
+| Validation | Pydantic |
 
 ## Requirements
 - Python 3.10+
-- Free Groq Accounts (for rotating API keys and rate-limit bypassing)
-- (Optional) Bing Web Search API key for expanded fallback search capacity
+- Groq API key (free at console.groq.com)
+- ~500MB disk for sentence-transformers model (downloaded on first run)
 
-## Setup instructions
-1. Clone the repository.
-2. Create your virtual environment and run `pip install -r requirements.txt`.
-3. Install playwright browsers: `playwright install chromium`.
-4. Create `.env` from `.env.example` and add your keys.
-5. Start server: `python backend/server.py`.
+## Setup
 
-## Architecture Note
-This version of Job Hunter Agent drops high-overhead UI frameworks and uses a robust Python backend (Flask API + SQLite) with an ultra-light Vanilla JS foreground utilizing long-polling rather than stateful SSEs.
+```bash
+# 1. Clone and install
+git clone <repo-url>
+cd job-hunter-agent
+python -m venv venv && venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+
+# 2. Install Playwright browser
+playwright install chromium
+
+# 3. Configure API keys
+copy .env.example .env
+# Edit .env with your Groq API key(s)
+
+# 4. Run
+python run.py
+# Open http://localhost:5000
+```
+
+## Project Structure
+
+```
+job-hunter-agent/
+├── backend/
+│   ├── agents/
+│   │   ├── crew.py              # CrewAI multi-agent orchestrator
+│   │   ├── schemas.py           # Pydantic output schemas
+│   │   ├── resume_writer.py     # Fallback resume agent
+│   │   ├── researcher.py        # Fallback research agent
+│   │   ├── interview_prep.py    # Fallback interview agent
+│   │   └── pdf_generator.py     # Markdown → PDF via Playwright
+│   ├── pipeline/
+│   │   ├── orchestrator.py      # Pipeline coordinator
+│   │   ├── fast_scanner.py      # Zero-token ATS scanner
+│   │   └── rate_limiter.py      # Groq key rotation + backoff
+│   ├── resume/
+│   │   ├── parser.py            # PDF/DOCX text extraction
+│   │   └── rag.py               # RAG: chunking + ChromaDB embedding
+│   ├── storage/
+│   │   ├── db.py                # SQLite schema + migrations
+│   │   └── cache.py             # TTL-based result cache
+│   ├── utils/
+│   │   └── logger.py            # Structured logging
+│   ├── config.py                # Central configuration
+│   └── server.py                # Flask API server
+├── frontend/
+│   ├── css/style.css            # Premium dark UI
+│   ├── js/
+│   │   ├── app.js               # Main controller
+│   │   ├── results.js           # Job card renderer
+│   │   ├── poller.js            # Long-polling client
+│   │   └── upload.js            # Drag-drop file upload
+│   └── index.html               # Single-page app
+├── config/portals.yml           # Tracked company APIs
+├── requirements.txt
+├── run.py
+└── README.md
+```

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Hunter Agent</title>
-    <meta name="description" content="AI-powered job search, resume tailoring, and interview preparation tool">
+    <title>Job Hunter Agent — AI-Powered Job Search & Interview Prep</title>
+    <meta name="description" content="Multi-agent AI system for automated job search, resume tailoring with RAG, and interview preparation using CrewAI">
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
     <!-- Marked.js for Markdown rendering -->
@@ -12,21 +12,32 @@
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="header">
-            <h1>Job Hunter Agent</h1>
-            <p>AI-powered job search, matching & interview prep</p>
+            <div class="header-badge">Multi-Agent AI System</div>
+            <h1>Job Hunter <span class="gradient-text">Agent</span></h1>
+            <p>CrewAI-powered job search, RAG-enhanced resume tailoring & interview prep</p>
+            <div class="tech-badges">
+                <span class="tech-badge">🤖 CrewAI Agents</span>
+                <span class="tech-badge">🧠 RAG Pipeline</span>
+                <span class="tech-badge">📊 Pydantic Schemas</span>
+                <span class="tech-badge">⚡ Zero-Token Scan</span>
+            </div>
         </div>
 
         <!-- View 1: Search Form -->
         <div id="view-form" class="view active glass-card">
             <form id="search-form">
                 <div class="upload-area" id="upload-box">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent);">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="17 8 12 3 7 8"></polyline>
-                        <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
+                    <div class="upload-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                    </div>
                     <p id="file-label">Drag & drop your resume (PDF/DOCX) or click to browse</p>
+                    <span class="upload-hint">Your resume is chunked & embedded via RAG for intelligent matching</span>
                     <input type="file" id="resume-upload" accept=".pdf,.docx,.txt" style="display: none;">
                 </div>
 
@@ -53,30 +64,43 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn" style="width: 100%; font-size: 1.1rem; margin-bottom: 1rem;">⚡ Fast Scan Jobs</button>
-                <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem;">Scans 15+ company career pages + DuckDuckGo — no API tokens used</p>
+                <button type="submit" id="search-btn" class="btn btn-primary btn-full">
+                    <span class="btn-icon">⚡</span>
+                    Fast Scan Jobs
+                </button>
+                <p class="hint-text">Scans 15+ company career pages + DuckDuckGo — zero API tokens used</p>
             </form>
         </div>
 
         <!-- View 2: Progress -->
         <div id="view-progress" class="view glass-card">
             <div class="progress-container">
-                <h2 id="progress-text" style="margin-bottom: 1rem; color: var(--accent);">Scanning career pages...</h2>
+                <div class="progress-icon">
+                    <div class="orbit-spinner">
+                        <div class="orbit"></div>
+                        <div class="orbit"></div>
+                        <div class="orbit"></div>
+                    </div>
+                </div>
+                <h2 id="progress-text">Scanning career pages...</h2>
                 <div class="progress-bar-bg">
                     <div id="progress-bar" class="progress-bar-fill"></div>
                 </div>
-                <p id="progress-percent" style="font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem;">0%</p>
+                <p id="progress-percent" class="progress-number">0%</p>
                 <button id="cancel-btn" class="btn btn-outline">Cancel</button>
             </div>
         </div>
 
         <!-- View 3: Results -->
         <div id="view-results" class="view">
-            <div class="results-header glass-card" style="padding: 1.5rem;">
-                <h2 id="summary-text" style="font-size: 1.25rem;">Found 0 jobs across 0 companies</h2>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <button id="export-btn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Export CSV</button>
-                    <button id="new-search-btn" class="btn" style="padding: 0.5rem 1rem;">New Search</button>
+            <div class="results-header glass-card">
+                <div class="results-info">
+                    <h2 id="summary-text">Found 0 jobs across 0 companies</h2>
+                    <div class="results-meta" id="results-meta"></div>
+                </div>
+                <div class="results-actions">
+                    <button id="export-btn" class="btn btn-outline btn-sm">📥 Export CSV</button>
+                    <button id="new-search-btn" class="btn btn-sm">🔄 New Search</button>
                 </div>
             </div>
 
@@ -90,31 +114,52 @@
     <div id="prep-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Interview Prep Guide ✨</h2>
-                <button class="close-modal">&times;</button>
+                <div>
+                    <h2>Interview Prep Suite</h2>
+                    <p class="modal-subtitle" id="modal-subtitle">Powered by CrewAI Multi-Agent System</p>
+                </div>
+                <button class="close-modal" id="close-modal-btn">&times;</button>
             </div>
             <div class="modal-body">
+                <!-- Agent Status -->
+                <div id="agent-status" class="agent-status-bar">
+                    <div class="agent-chip active" id="agent-resume">
+                        <span class="agent-dot"></span>
+                        Resume Tailor
+                    </div>
+                    <div class="agent-chip" id="agent-researcher">
+                        <span class="agent-dot"></span>
+                        Company Researcher
+                    </div>
+                    <div class="agent-chip" id="agent-coach">
+                        <span class="agent-dot"></span>
+                        Interview Coach
+                    </div>
+                </div>
+
                 <div class="tabs">
-                    <div class="tab active" data-target="tab-resume">Tailored Resume</div>
-                    <div class="tab" data-target="tab-research">Company Research</div>
-                    <div class="tab" data-target="tab-interview">Interview Prep</div>
+                    <div class="tab active" data-target="tab-resume">📝 Tailored Resume</div>
+                    <div class="tab" data-target="tab-research">🔍 Company Research</div>
+                    <div class="tab" data-target="tab-interview">🎯 Interview Prep</div>
                 </div>
                 
                 <div id="tab-resume" class="tab-content active">
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; float: right;">
-                        <button id="download-resume" class="btn btn-small">Download .md</button>
-                        <button id="download-resume-pdf" class="btn btn-small btn-accent" style="display: none;">Download PDF</button>
+                    <div class="tab-actions">
+                        <button id="download-resume" class="btn btn-sm btn-outline">Download .md</button>
+                        <button id="download-resume-pdf" class="btn btn-sm btn-accent" style="display: none;">Download PDF</button>
                     </div>
                     <div id="content-resume" class="markdown-body"></div>
                 </div>
                 <div id="tab-research" class="tab-content">
-                    <button id="download-research" class="btn btn-small" style="margin-bottom: 1rem; float: right;">Download .md</button>
+                    <div class="tab-actions">
+                        <button id="download-research" class="btn btn-sm btn-outline">Download .md</button>
+                    </div>
                     <div id="content-research" class="markdown-body"></div>
                 </div>
                 <div id="tab-interview" class="tab-content">
-                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; float: right;">
-                        <button id="download-interview" class="btn btn-small">Download .md</button>
-                        <button id="download-interview-pdf" class="btn btn-small btn-accent" style="display: none;">Download PDF</button>
+                    <div class="tab-actions">
+                        <button id="download-interview" class="btn btn-sm btn-outline">Download .md</button>
+                        <button id="download-interview-pdf" class="btn btn-sm btn-accent" style="display: none;">Download PDF</button>
                     </div>
                     <div id="content-interview" class="markdown-body"></div>
                 </div>

@@ -9,3 +9,9 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# Data (generated at runtime)
+data/jobs.db
+data/app.log
+data/pdfs/
+data/chroma_db/

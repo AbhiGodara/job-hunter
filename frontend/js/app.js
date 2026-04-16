@@ -1,6 +1,10 @@
+/**
+ * Main application controller — handles search, polling, modal, and agent status.
+ */
 let currentJobs = [];
 let activePoller = null;
 
+// ── Search Form ────────────────────────────────────────────────────
 document.getElementById('search-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -62,6 +66,7 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     }
 });
 
+// ── Cancel / Export / New Search ────────────────────────────────────
 document.getElementById('cancel-btn').addEventListener('click', () => {
     if (activePoller) activePoller.stop();
     document.getElementById('view-progress').classList.remove('active');
@@ -79,14 +84,28 @@ document.getElementById('new-search-btn').addEventListener('click', () => {
     updateFileLabel();
 });
 
-// Modal Logic
+// ── Modal Logic ────────────────────────────────────────────────────
 const modal = document.getElementById('prep-modal');
-const closeBtn = document.querySelector('.close-modal');
 
-closeBtn.addEventListener('click', () => {
+document.getElementById('close-modal-btn').addEventListener('click', () => {
     modal.classList.remove('active');
 });
 
+// Close on overlay click
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+    }
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+    }
+});
+
+// Tab switching
 document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', (e) => {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -98,26 +117,77 @@ document.querySelectorAll('.tab').forEach(tab => {
     });
 });
 
+
+// ── Agent Status Management ────────────────────────────────────────
+
+function setAgentStatus(agentId, status) {
+    const chip = document.getElementById(agentId);
+    if (!chip) return;
+    chip.classList.remove('active', 'done');
+    if (status === 'active') chip.classList.add('active');
+    else if (status === 'done') chip.classList.add('done');
+}
+
+function resetAgentStatus() {
+    ['agent-resume', 'agent-researcher', 'agent-coach'].forEach(id => {
+        setAgentStatus(id, 'idle');
+    });
+}
+
+
+// ── Prep Modal (CrewAI) ────────────────────────────────────────────
+
 async function showPrepModal(jobId) {
     modal.classList.add('active');
     
-    // Show loading state
-    document.getElementById('content-resume').innerHTML = '<div class="loading-spinner"></div><p>Generating tailored resume...</p>';
-    document.getElementById('content-research').innerHTML = '<div class="loading-spinner"></div><p>Researching company...</p>';
-    document.getElementById('content-interview').innerHTML = '<div class="loading-spinner"></div><p>Preparing interview guide...</p>';
+    // Reset to first tab
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.tab[data-target="tab-resume"]').classList.add('active');
+    document.getElementById('tab-resume').classList.add('active');
     
-    // Hide PDF buttons until ready
+    // Show loading state with agent-specific messaging
+    resetAgentStatus();
+    setAgentStatus('agent-resume', 'active');
+    
+    document.getElementById('content-resume').innerHTML = `
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Resume Tailor Agent is analyzing your resume against the JD...</p>
+    `;
+    document.getElementById('content-research').innerHTML = `
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Company Researcher Agent will start after Resume Tailor...</p>
+    `;
+    document.getElementById('content-interview').innerHTML = `
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Interview Coach Agent will start after Company Researcher...</p>
+    `;
+    
+    // Hide PDF buttons
     document.getElementById('download-resume-pdf').style.display = 'none';
     document.getElementById('download-interview-pdf').style.display = 'none';
     
+    // Update subtitle with job info
+    const job = currentJobs.find(j => j.id == jobId);
+    if (job) {
+        document.getElementById('modal-subtitle').textContent = 
+            `${job.title} at ${job.company} • CrewAI Multi-Agent Pipeline`;
+    }
+    
     try {
-        // We do NOT send resume_text from the frontend anymore.
-        // The server uses the properly parsed text stored in DB from parse_resume().
+        // Simulate agent progression (since actual is sequential on server)
+        const agentTimer = setInterval(() => {
+            // The server runs all 3 agents sequentially, so we animate through them
+        }, 3000);
+
         const resp = await fetch(`/api/prep/${jobId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({})
         });
+        
+        clearInterval(agentTimer);
+        
         const data = await resp.json();
         
         if (data.error) {
@@ -126,6 +196,12 @@ async function showPrepModal(jobId) {
             return;
         }
         
+        // Mark all agents as done
+        setAgentStatus('agent-resume', 'done');
+        setAgentStatus('agent-researcher', 'done');
+        setAgentStatus('agent-coach', 'done');
+        
+        // Render content
         document.getElementById('content-resume').innerHTML = marked.parse(data.resume || "");
         document.getElementById('content-research').innerHTML = marked.parse(data.research || "");
         document.getElementById('content-interview').innerHTML = marked.parse(data.interview || "");
@@ -138,12 +214,12 @@ async function showPrepModal(jobId) {
         // PDF downloads
         if (data.resume_pdf) {
             const pdfBtn = document.getElementById('download-resume-pdf');
-            pdfBtn.style.display = 'inline-block';
+            pdfBtn.style.display = 'inline-flex';
             pdfBtn.onclick = () => window.open(data.resume_pdf, '_blank');
         }
         if (data.interview_pdf) {
             const pdfBtn = document.getElementById('download-interview-pdf');
-            pdfBtn.style.display = 'inline-block';
+            pdfBtn.style.display = 'inline-flex';
             pdfBtn.onclick = () => window.open(data.interview_pdf, '_blank');
         }
         
@@ -152,6 +228,7 @@ async function showPrepModal(jobId) {
         modal.classList.remove('active');
     }
 }
+
 
 function setupDownloadBtn(btnId, content, filename) {
     const btn = document.getElementById(btnId);

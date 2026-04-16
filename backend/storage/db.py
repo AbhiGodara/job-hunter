@@ -1,7 +1,7 @@
 """
 SQLite storage for:
 - job_runs: each pipeline execution
-- jobs: extracted job records
+- jobs: extracted job records with structured JD fields
 - cache: search result cache with TTL
 - prep_outputs: AI-generated prep materials
 """
@@ -35,16 +35,23 @@ def init_db():
         );
 
         CREATE TABLE IF NOT EXISTS jobs (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            run_id      TEXT REFERENCES job_runs(id),
-            url         TEXT UNIQUE,
-            title       TEXT,
-            company     TEXT,
-            location    TEXT,
-            portal      TEXT,
-            relevance   REAL DEFAULT 0,
-            description TEXT DEFAULT '',
-            extracted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            id              INTEGER PRIMARY KEY AUTOINCREMENT,
+            run_id          TEXT REFERENCES job_runs(id),
+            url             TEXT UNIQUE,
+            title           TEXT,
+            company         TEXT,
+            location        TEXT,
+            portal          TEXT,
+            relevance       REAL DEFAULT 0,
+            description     TEXT DEFAULT '',
+            salary_range    TEXT DEFAULT '',
+            experience_level TEXT DEFAULT '',
+            employment_type TEXT DEFAULT '',
+            skills          TEXT DEFAULT '',
+            responsibilities TEXT DEFAULT '',
+            requirements    TEXT DEFAULT '',
+            benefits        TEXT DEFAULT '',
+            extracted_at    DATETIME DEFAULT CURRENT_TIMESTAMP
         );
 
         CREATE TABLE IF NOT EXISTS cache (
@@ -65,16 +72,23 @@ def init_db():
         );
         """)
 
-        # Migration: add experience column if missing (for existing DBs)
-        try:
-            conn.execute("SELECT experience FROM job_runs LIMIT 1")
-        except sqlite3.OperationalError:
-            conn.execute("ALTER TABLE job_runs ADD COLUMN experience TEXT DEFAULT ''")
-
-        # Migration: add description column if missing (for existing DBs)
-        try:
-            conn.execute("SELECT description FROM jobs LIMIT 1")
-        except sqlite3.OperationalError:
-            conn.execute("ALTER TABLE jobs ADD COLUMN description TEXT DEFAULT ''")
+        # Migrations for existing databases
+        _migrate(conn, "job_runs", "experience", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "description", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "salary_range", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "experience_level", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "employment_type", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "skills", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "responsibilities", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "requirements", "TEXT DEFAULT ''")
+        _migrate(conn, "jobs", "benefits", "TEXT DEFAULT ''")
 
     print("DB initialized at", DB_PATH)
+
+
+def _migrate(conn, table: str, column: str, col_type: str):
+    """Safely add a column if it doesn't exist."""
+    try:
+        conn.execute(f"SELECT {column} FROM {table} LIMIT 1")
+    except sqlite3.OperationalError:
+        conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {col_type}")
