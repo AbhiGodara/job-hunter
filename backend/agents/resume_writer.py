@@ -46,6 +46,9 @@ def write_resume(job: dict, resume_text: str) -> str:
         {"role": "user", "content": user_prompt}
     ]
 
+    if groq_client is None:
+        return "**Error:** No Groq API key configured. Set GROQ_API_KEY_1 in your .env file."
+
     try:
         response_text = groq_client.chat(messages, temperature=0.3, max_tokens=3000)
         return response_text.strip()

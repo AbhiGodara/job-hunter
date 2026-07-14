@@ -49,6 +49,9 @@ def prep_interview(job: dict, resume_text: str) -> str:
         {"role": "user", "content": user_prompt}
     ]
 
+    if groq_client is None:
+        return "**Error:** No Groq API key configured. Set GROQ_API_KEY_1 in your .env file."
+
     try:
         return groq_client.chat(messages, temperature=0.4, max_tokens=3000)
     except Exception as e:

@@ -163,7 +163,21 @@ def _create_interview_task(agent: Agent, job_info: str, resume_context: str) -> 
 # ── Main Crew Runner ────────────────────────────────────────────────
 
 def _search_web(query: str, max_results: int = 5) -> str:
-    """Search the web for company info using DuckDuckGo."""
+    """Search the web for company info using Tavily API, fallback to DuckDuckGo."""
+    tavily_key = os.getenv("TAVILY_API_KEY")
+    if tavily_key:
+        try:
+            from tavily import TavilyClient
+            client = TavilyClient(api_key=tavily_key)
+            response = client.search(query=query, max_results=max_results, search_depth="basic")
+            results_text = "\n".join(
+                f"- {r.get('title', '')}: {r.get('content', '')}" for r in response.get("results", [])
+            )
+            if results_text:
+                return results_text
+        except Exception as e:
+            log.warning(f"Tavily company research failed, falling back to DDG: {e}")
+
     try:
         from duckduckgo_search import DDGS
         with DDGS() as ddgs:
