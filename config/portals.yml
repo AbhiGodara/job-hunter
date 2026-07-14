@@ -1,30 +1,16 @@
-# Job portal configuration
-# search_engine.py reads PORTALS from backend/config.py — this file is used by scraper_portals (Playwright)
-# The real portal list is in backend/config.py
+# Job portal configuration — companies queried directly via their ATS APIs.
+# fast_scanner.py reads this file and calls Greenhouse/Ashby/Lever APIs concurrently.
 
-# Tracked companies for direct Playwright scraping
-# Add any company you want to track here with their exact careers page URL
 tracked_companies:
 
-  # --- Greenhouse companies (also have free JSON API) ---
+  # ── Greenhouse companies ─────────────────────────────────────────────
   - name: "Anthropic"
     careers_url: "https://job-boards.greenhouse.io/anthropic"
     api: "https://boards-api.greenhouse.io/v1/boards/anthropic/jobs"
     enabled: true
 
-  - name: "Airtable"
-    careers_url: "https://job-boards.greenhouse.io/airtable"
-    api: "https://boards-api.greenhouse.io/v1/boards/airtable/jobs"
-    enabled: true
-
-  - name: "Vercel"
-    careers_url: "https://job-boards.greenhouse.io/vercel"
-    api: "https://boards-api.greenhouse.io/v1/boards/vercel/jobs"
-    enabled: true
-
-  - name: "Intercom"
-    careers_url: "https://job-boards.greenhouse.io/intercom"
-    api: "https://boards-api.greenhouse.io/v1/boards/intercom/jobs"
+  - name: "OpenAI"
+    careers_url: "https://jobs.ashbyhq.com/openai"
     enabled: true
 
   - name: "Glean"
@@ -32,17 +18,97 @@ tracked_companies:
     api: "https://boards-api.greenhouse.io/v1/boards/gleanwork/jobs"
     enabled: true
 
-  - name: "Temporal"
-    careers_url: "https://job-boards.greenhouse.io/temporal"
-    api: "https://boards-api.greenhouse.io/v1/boards/temporal/jobs"
+  - name: "Vercel"
+    careers_url: "https://job-boards.greenhouse.io/vercel"
+    api: "https://boards-api.greenhouse.io/v1/boards/vercel/jobs"
     enabled: true
 
   - name: "Retool"
     careers_url: "https://job-boards.greenhouse.io/retool"
     api: "https://boards-api.greenhouse.io/v1/boards/retool/jobs"
+    enabled: false
+
+  - name: "Airtable"
+    careers_url: "https://job-boards.greenhouse.io/airtable"
+    api: "https://boards-api.greenhouse.io/v1/boards/airtable/jobs"
     enabled: true
 
-  # --- Ashby companies ---
+  - name: "Intercom"
+    careers_url: "https://job-boards.greenhouse.io/intercom"
+    api: "https://boards-api.greenhouse.io/v1/boards/intercom/jobs"
+    enabled: true
+
+  - name: "Temporal"
+    careers_url: "https://job-boards.greenhouse.io/temporal"
+    api: "https://boards-api.greenhouse.io/v1/boards/temporal/jobs"
+    enabled: true
+
+  - name: "Cohere"
+    careers_url: "https://jobs.ashbyhq.com/cohere"
+    enabled: true
+
+  - name: "Weights & Biases"
+    careers_url: "https://job-boards.greenhouse.io/wandb"
+    api: "https://boards-api.greenhouse.io/v1/boards/wandb/jobs"
+    enabled: false
+
+  - name: "Mistral AI"
+    careers_url: "https://jobs.lever.co/mistral"
+    enabled: true
+
+  - name: "Together AI"
+    careers_url: "https://job-boards.greenhouse.io/togetherai"
+    api: "https://boards-api.greenhouse.io/v1/boards/togetherai/jobs"
+    enabled: true
+
+  - name: "Groq"
+    careers_url: "https://job-boards.greenhouse.io/groq"
+    api: "https://boards-api.greenhouse.io/v1/boards/groq/jobs"
+    enabled: false
+
+  # Voice AI & Conversational AI (Greenhouse)
+  - name: "PolyAI"
+    careers_url: "https://job-boards.eu.greenhouse.io/polyai"
+    api: "https://boards-api.greenhouse.io/v1/boards/polyai/jobs"
+    enabled: true
+
+  - name: "Parloa"
+    careers_url: "https://job-boards.eu.greenhouse.io/parloa"
+    api: "https://boards-api.greenhouse.io/v1/boards/parloa/jobs"
+    enabled: true
+
+  - name: "Hume AI"
+    careers_url: "https://job-boards.greenhouse.io/humeai"
+    api: "https://boards-api.greenhouse.io/v1/boards/humeai/jobs"
+    enabled: true
+
+  # AI Infra & LLMOps (Greenhouse)
+  - name: "Arize AI"
+    careers_url: "https://job-boards.greenhouse.io/arizeai"
+    api: "https://boards-api.greenhouse.io/v1/boards/arizeai/jobs"
+    enabled: true
+
+  - name: "RunPod"
+    careers_url: "https://job-boards.greenhouse.io/runpod"
+    api: "https://boards-api.greenhouse.io/v1/boards/runpod/jobs"
+    enabled: true
+
+  - name: "Speechmatics"
+    careers_url: "https://job-boards.greenhouse.io/speechmatics"
+    api: "https://boards-api.greenhouse.io/v1/boards/speechmatics/jobs"
+    enabled: true
+
+  - name: "Black Forest Labs"
+    careers_url: "https://job-boards.greenhouse.io/blackforestlabs"
+    api: "https://boards-api.greenhouse.io/v1/boards/blackforestlabs/jobs"
+    enabled: true
+
+  - name: "Celonis"
+    careers_url: "https://job-boards.greenhouse.io/celonis"
+    api: "https://boards-api.greenhouse.io/v1/boards/celonis/jobs"
+    enabled: true
+
+  # ── Ashby companies ──────────────────────────────────────────────────
   - name: "ElevenLabs"
     careers_url: "https://jobs.ashbyhq.com/elevenlabs"
     enabled: true
@@ -55,6 +121,10 @@ tracked_companies:
     careers_url: "https://jobs.ashbyhq.com/vapi"
     enabled: true
 
+  - name: "Bland AI"
+    careers_url: "https://jobs.ashbyhq.com/bland"
+    enabled: true
+
   - name: "Cursor"
     careers_url: "https://jobs.ashbyhq.com/cursor"
     enabled: true
@@ -63,7 +133,43 @@ tracked_companies:
     careers_url: "https://jobs.ashbyhq.com/perplexityai"
     enabled: true
 
-  # --- Lever companies ---
+  - name: "Imbue"
+    careers_url: "https://jobs.ashbyhq.com/imbue"
+    enabled: true
+
+  - name: "Letta"
+    careers_url: "https://jobs.ashbyhq.com/letta"
+    enabled: true
+
+  - name: "Krea AI"
+    careers_url: "https://jobs.ashbyhq.com/krea"
+    enabled: true
+
+  - name: "LangChain"
+    careers_url: "https://jobs.ashbyhq.com/langchain"
+    enabled: true
+
+  - name: "Pinecone"
+    careers_url: "https://jobs.ashbyhq.com/pinecone"
+    enabled: true
+
+  - name: "Aleph Alpha"
+    careers_url: "https://jobs.ashbyhq.com/AlephAlpha"
+    enabled: true
+
+  - name: "DeepL"
+    careers_url: "https://jobs.ashbyhq.com/DeepL"
+    enabled: true
+
+  - name: "n8n"
+    careers_url: "https://jobs.ashbyhq.com/n8n"
+    enabled: true
+
+  - name: "Lindy"
+    careers_url: "https://jobs.ashbyhq.com/lindy"
+    enabled: true
+
+  # ── Lever companies ──────────────────────────────────────────────────
   - name: "Scale AI"
     careers_url: "https://jobs.lever.co/scaleai"
     enabled: true
@@ -72,42 +178,105 @@ tracked_companies:
     careers_url: "https://jobs.lever.co/huggingface"
     enabled: true
 
-  # --- Custom career pages ---
-  - name: "OpenAI"
-    careers_url: "https://openai.com/careers"
+  - name: "Labelbox"
+    careers_url: "https://jobs.lever.co/labelbox"
     enabled: true
 
-  - name: "Google DeepMind"
-    careers_url: "https://deepmind.google/careers/"
+  - name: "Snorkel AI"
+    careers_url: "https://jobs.lever.co/snorkelai"
     enabled: true
 
-# Title filter — used when scraping to decide if a job is relevant
-# At least 1 positive keyword must appear in the title
-# 0 negative keywords must appear in the title
+  - name: "Palantir"
+    careers_url: "https://jobs.lever.co/palantir"
+    enabled: true
+
+  - name: "Meesho"
+    careers_url: "https://jobs.lever.co/meesho"
+    enabled: true
+
+  - name: "CRED"
+    careers_url: "https://jobs.lever.co/cred"
+    enabled: true
+
+  # ── India-focused companies (Greenhouse) ─────────────────────────────
+  - name: "Postman"
+    careers_url: "https://job-boards.greenhouse.io/postman"
+    api: "https://boards-api.greenhouse.io/v1/boards/postman/jobs"
+    enabled: true
+
+  - name: "InMobi"
+    careers_url: "https://job-boards.greenhouse.io/inmobi"
+    api: "https://boards-api.greenhouse.io/v1/boards/inmobi/jobs"
+    enabled: true
+
+  - name: "Druva"
+    careers_url: "https://job-boards.greenhouse.io/druva"
+    api: "https://boards-api.greenhouse.io/v1/boards/druva/jobs"
+    enabled: true
+
+  - name: "Turing"
+    careers_url: "https://job-boards.greenhouse.io/turing"
+    api: "https://boards-api.greenhouse.io/v1/boards/turing/jobs"
+    enabled: true
+
+  # ── Indian AI startups (Ashby) ────────────────────────────────────────
+  - name: "Sarvam AI"
+    careers_url: "https://jobs.ashbyhq.com/sarvam"
+    enabled: true
+
+
+# Title filter — controls which job titles are included in results.
+# ALL jobs (ATS + Playwright) must have at least 1 positive keyword
+# and zero negative keywords to be considered.
+#
+# The code also adds role-query words as dynamic keywords (AND logic),
+# and adds senior/staff/principal etc. to negatives for intern/entry searches.
 title_filter:
   positive:
     - "ML"
     - "Machine Learning"
     - "AI"
+    - "Artificial Intelligence"
     - "Data Science"
     - "Data Scientist"
     - "Data Engineer"
     - "Deep Learning"
     - "NLP"
     - "LLM"
+    - "GenAI"
+    - "Generative AI"
+    - "Computer Vision"
+    - "MLOps"
     - "Python"
     - "Backend"
     - "Software Engineer"
     - "Software Developer"
     - "Full Stack"
-    - "Research"
+    - "Research Scientist"
+    - "Research Engineer"
+    - "Applied Scientist"
+    - "Platform Engineer"
+    - "Infrastructure Engineer"
   negative:
     - "Intern"
     - "Sales"
+    - "Account Executive"
+    - "Account Manager"
     - "Marketing"
     - "HR"
+    - "Human Resources"
+    - "Recruiter"
     - "Finance"
     - "Legal"
+    - "Counsel"
     - "Designer"
+    - "UX"
     - "iOS"
     - "Android"
+    - "Mobile"
+    - "Operations"
+    - "Customer Success"
+    - "Customer Support"
+    - "Customer Engineer"
+    - "Solutions Engineer"
+    - "Solution Engineer"
