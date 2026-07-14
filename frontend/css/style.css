@@ -460,6 +460,12 @@ select.form-control {
   color: var(--text-dim);
 }
 
+.job-posted {
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-style: italic;
+}
+
 /* Relevance Bar */
 .relevance-section {
   margin-bottom: 0.75rem;
@@ -533,6 +539,12 @@ select.form-control {
   background: rgba(255, 255, 255, 0.04);
   color: var(--text-muted);
   border: 1px solid var(--card-border);
+}
+
+.chip-date {
+  background: rgba(251, 191, 36, 0.10);
+  color: #fbbf24;
+  font-size: 0.75rem;
 }
 
 /* Expandable JD Section */

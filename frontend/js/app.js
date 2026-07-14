@@ -11,20 +11,22 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     const role = document.getElementById('role').value;
     const location = document.getElementById('location').value || 'India';
     const experience = document.getElementById('experience').value || '';
+    const posted_days = document.getElementById('posted_days').value || '0';
     const resumeFile = document.getElementById('resume-upload').files[0];
-    
+
     if (!role || !resumeFile) {
         alert("Please provide a role and a resume file.");
         return;
     }
-    
+
     document.getElementById('view-form').classList.remove('active');
     document.getElementById('view-progress').classList.add('active');
-    
+
     const formData = new FormData();
     formData.append('role', role);
     formData.append('location', location);
     formData.append('experience', experience);
+    formData.append('posted_days', posted_days);
     formData.append('resume', resumeFile);
     
     try {
@@ -175,17 +177,24 @@ async function showPrepModal(jobId) {
     }
     
     try {
-        // Simulate agent progression (since actual is sequential on server)
+        // Animate through agents while the server runs them sequentially (~8s each)
+        const agentOrder = ['agent-resume', 'agent-researcher', 'agent-coach'];
+        let agentStep = 0;
+        setAgentStatus('agent-resume', 'active');
         const agentTimer = setInterval(() => {
-            // The server runs all 3 agents sequentially, so we animate through them
-        }, 3000);
+            if (agentStep < agentOrder.length - 1) {
+                setAgentStatus(agentOrder[agentStep], 'done');
+                agentStep++;
+                setAgentStatus(agentOrder[agentStep], 'active');
+            }
+        }, 8000);
 
         const resp = await fetch(`/api/prep/${jobId}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({})
         });
-        
+
         clearInterval(agentTimer);
         
         const data = await resp.json();

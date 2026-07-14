@@ -18,10 +18,11 @@ function renderJobs(jobs) {
 
     // Portal colors
     const portalConfig = {
-        'greenhouse': { bg: 'rgba(34, 197, 94, 0.12)', color: '#4ade80', label: '🌿 Greenhouse' },
-        'ashby':      { bg: 'rgba(99, 102, 241, 0.12)', color: '#a78bfa', label: '💎 Ashby' },
-        'lever':      { bg: 'rgba(245, 158, 11, 0.12)', color: '#fbbf24', label: '🔧 Lever' },
-        'web':        { bg: 'rgba(236, 72, 153, 0.12)', color: '#f472b6', label: '🌐 Web' },
+        'greenhouse': { bg: 'rgba(34, 197, 94, 0.12)',  color: '#4ade80', label: 'Greenhouse' },
+        'ashby':      { bg: 'rgba(99, 102, 241, 0.12)', color: '#a78bfa', label: 'Ashby' },
+        'lever':      { bg: 'rgba(245, 158, 11, 0.12)', color: '#fbbf24', label: 'Lever' },
+        'playwright': { bg: 'rgba(56, 189, 248, 0.12)', color: '#38bdf8', label: 'Career Site' },
+        'web':        { bg: 'rgba(156, 163, 175, 0.12)', color: '#9ca3af', label: 'Web' },
     };
 
     jobs.forEach((job, idx) => {
@@ -32,13 +33,30 @@ function renderJobs(jobs) {
 
         const portal = portalConfig[job.portal] || portalConfig['web'];
 
+        // Format posted date
+        let postedLabel = '';
+        if (job.posted_at) {
+            const d = new Date(job.posted_at);
+            if (!isNaN(d.getTime())) {
+                const now = new Date();
+                const diffDays = Math.round((now - d) / 86400000);
+                postedLabel = diffDays === 0 ? 'today'
+                    : diffDays === 1 ? '1 day ago'
+                    : diffDays < 30 ? `${diffDays} days ago`
+                    : job.posted_at;
+            }
+        }
+
         // Build chips
         let chipsHTML = `<span class="chip chip-portal" style="background:${portal.bg};color:${portal.color}">${portal.label}</span>`;
+        if (postedLabel) {
+            chipsHTML += `<span class="chip chip-date">${postedLabel}</span>`;
+        }
         if (job.salary_range) {
-            chipsHTML += `<span class="chip chip-salary">💰 ${job.salary_range}</span>`;
+            chipsHTML += `<span class="chip chip-salary">${job.salary_range}</span>`;
         }
         if (job.experience_level) {
-            chipsHTML += `<span class="chip chip-exp">📊 ${job.experience_level}</span>`;
+            chipsHTML += `<span class="chip chip-exp">${job.experience_level}</span>`;
         }
         if (job.employment_type) {
             chipsHTML += `<span class="chip chip-type">${job.employment_type}</span>`;
